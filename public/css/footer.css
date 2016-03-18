@@ -1,0 +1,30 @@
+
+.footer {
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    bottom: 0px;
+    transform: translate(-50%, -50%);
+    margin: 0 auto;
+    display: flex;
+}
+
+.footer li {
+    display: inline;
+    bottom-margin: 2%;
+    padding-right: 25px;
+    list-style-type: none;
+}
+
+.footer li a {
+    color: rgba(255, 255, 255, .60);
+    text-shadow: 1px 1px darkslategrey;
+    font-family: 'Modernist';
+    font-size: 13px;
+    text-decoration: none;
+}
+
+@font-face {
+    font-family: 'Modernist';
+    src: url('../font/Sk-Modernist-Regular.otf');
+}

@@ -1,0 +1,27 @@
+Options -Indexes
+
+RewriteEngine on
+
+# ErrorDocument 404 /app/controller/error.php
+
+# Site
+RewriteRule ^$ app/controller/siteController.php?action=index [QSA,L]
+RewriteRule ^mapPage/?$ app/controller/siteController.php?action=mapPage [QSA,L]
+RewriteRule ^browse/?$ app/controller/siteController.php?action=browse [QSA,L]
+RewriteRule ^logout/?$ app/controller/siteController.php?action=logout [QSA,L]
+RewriteRule ^login/?$ app/controller/siteController.php?action=login [QSA,L]
+RewriteRule ^create/?$ app/controller/siteController.php?action=create [QSA,L]
+RewriteRule ^upload/?$ app/controller/siteController.php?action=upload [QSA,L]
+
+RewriteRule ^photos/?$ app/controller/siteController.php?action=photos [QSA,L]
+
+# Post
+RewriteRule ^posts/?$ app/controller/postController.php?action=posts [QSA,L]
+RewriteRule ^posts/(\d+)/?$ app/controller/postController.php?action=post&postID=$1 [QSA,L]
+
+RewriteRule ^posts/(\d+)/comment/?$ app/controller/postController.php?action=comment&postID=$1 [QSA,L]
+
+RewriteRule ^posts/(\d+)/edit/?$ app/controller/postController.php?action=edit&postID=$1 [QSA,L]
+RewriteRule ^posts/(\d+)/delete/?$ app/controller/postController.php?action=delete&postID=$1 [QSA,L]
+
+RewriteRule ^posts/(\d+)/submit/?$ app/controller/postController.php?action=submit&postID=$1 [QSA,L]

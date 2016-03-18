@@ -1,0 +1,87 @@
+
+
+body{
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.header{
+    
+   
+    
+}
+#map {
+    position: absolute;
+    right: 0;
+    height:85vh;
+    width: 65%;
+    bottom: 0;
+}
+
+.contents {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+     height:85vh;
+    width: 35%;
+    overflow: auto;
+   
+}
+
+
+
+.loginForm label{
+    
+
+    font-size:15px;
+    font-family: 'Modernist';
+      display: inline-block;
+}
+#login{
+    position: absolute;
+    right:0;
+    display: inline-block;
+    width:15%;
+    top:-20px;
+
+}
+
+
+.post{
+    width:20%;
+    height:20%;
+    
+}
+
+
+#first .pic{
+    background-image: url('../image/img/1.jpg');
+}
+
+.post_title {
+    font-size: 28px;
+    display: block;
+}
+
+.post_detail {
+    display: block;
+    font-family: 'Modernist';
+    padding-bottom: 15px;
+}
+
+.post_title,
+.post_detail {
+    padding-left: 10px;
+}
+
+.selected {
+    text-decoration: underline;
+}
+@font-face {
+    font-family: 'Swistblnk';
+    src: url('../font/Swistblnk Duwhoers Brush.ttf');
+}
+
+@font-face {
+    font-family: 'Modernist';
+    src: url('../font/Sk-Modernist-Regular.otf');
+}
