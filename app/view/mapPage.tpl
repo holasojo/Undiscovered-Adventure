@@ -11,7 +11,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js">
     </script>
     <script src="<?= BASE_URL ?>/public/js/mapPage.js"></script>
-    <script src="<?= BASE_URL ?>/public/js/index.js"></script>
+   
 
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABQlT55ZLiU7jOIhZAAU6EFhp4v219z7s&callback=initMap">
     </script>
