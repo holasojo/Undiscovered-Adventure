@@ -4,14 +4,12 @@
 
 
 
-var imgs = ["1.jpg", "2.jpeg", "3.jpeg", "4.jpeg", "5.jpeg", "6.jpeg", "7.jpeg"];
-var $str;
-var $str2;
-var first = true;
+var $str = "./public/image/home_img/3.jpeg";
+var $str2 = "";
 
 function secondImage() {
-
-	var $ran2 = Math.floor(Math.random() * 7);
+	loadJsonpImg();
+	
 	$('#bg2').css({
 		'background-image': 'url("'+$str2+'")'
 	}).hide();
@@ -22,8 +20,7 @@ function secondImage() {
 
 }
 function firstImage() {
-	loadJsonpImg();
-	var $ran = Math.floor(Math.random() * 7);
+	
 	$('#bg1').css({
 		'background-image': 'url("'+$str+'")'
 	});
@@ -53,8 +50,7 @@ function loadJsonpImg() {
       	method: "flickr.photos.search",
       	api_key: "e79fbe1c09f0ad7c1f3efa0b90943db6",
       	text: encodeURI("travel"),
-      	page: "90",
-      	extras: "url_o",
+      	extras: "url_c",
       	sort: "relevent",
       	safe_search: 1,
       	format: "json"
@@ -62,11 +58,11 @@ function loadJsonpImg() {
 
       // Work with the response
       success: function( response ) {
-          var rand = Math.floor((Math.random() * 100) + 1); // random number between 1 and 10
+          var rand = Math.floor((Math.random() * 10) + 1); // random number between 1 and 10
           // alert(rand);
-          var rand2 = Math.floor((Math.random() * 100) + 1); 
-          var src = response.photos.photo[rand].url_o;
-          var src2 = response.photos.photo[rand2].url_o;
+          var rand2 = Math.floor((Math.random() * 10) + 1); 
+          var src = response.photos.photo[rand].url_c;
+          var src2 = response.photos.photo[rand2].url_c;
           console.log(response.photos);
           console.log(src);
 
@@ -94,9 +90,7 @@ function loadJsonpImg() {
 $(document).ready(function () {
 
 	loadJsonpImg();
-
 	firstImage();
-
 
 	$("#searchButton").click(function () {
 		document.location.href = "posts";
