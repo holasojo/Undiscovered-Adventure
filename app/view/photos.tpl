@@ -26,7 +26,7 @@
             <h1> Undiscovered Adventure </h1>
             <ul class="navbar">
                 <li><a href="<?= BASE_URL ?>/browse">Browse</a></li>
-                <li><a href="#">Posts</a></li>
+                <li><a href="<?= BASE_URL ?>/posts">Posts</a></li>
                 <li><a href="<?= BASE_URL ?>/mapPage">Map</a></li>
                 <li><a href="#">Photos</a></li>
                 <li>
