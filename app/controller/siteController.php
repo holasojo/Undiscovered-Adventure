@@ -55,7 +55,10 @@ class SiteController {
 			$postContent = $_POST['content'];
 			$this->create($postTitle, $postContent);
 			break;
-			
+
+			case 'registerSubmit':
+				$this->registerSubmit();
+				break;			
 		}
 	}
 
@@ -103,7 +106,22 @@ class SiteController {
 		$username = $_POST['uname'];
 		$passwd = $_POST['pw'];
 
-		if($username != ADMIN_USERNAME) {
+		$user = AppUser::loadByUsername($username);
+		if(is_null($user)) {
+			// username not found
+			$_SESSION['error'] = "Incorrect username.";
+		} elseif ($user->get('pw') != $passwd) {
+			// passwords don't match
+			$_SESSION['error'] = "Incorrect password.";
+		} else {
+			// password matches!
+			// log me in
+			$_SESSION['user_id'] = $user->getId();
+			$_SESSION['username'] = $username;
+			$_SESSION['error'] = "You are logged in as ".$username.".";
+		}
+
+		/*if($username != ADMIN_USERNAME) {
 					// username not found
 			$_SESSION['error'] = "Incorrect username.";
 		} elseif ($passwd != ADMIN_PASSWORD) {
@@ -114,7 +132,7 @@ class SiteController {
 					// log in
 			$_SESSION['username'] = $username;
 			$_SESSION['error'] = "You are logged in as ".$username.".";
-		}
+		}*/
 
 		// redirect to posts page
 		header('Location: '.BASE_URL.'/posts');
@@ -122,12 +140,53 @@ class SiteController {
 
 	public function logout() {
 				// erase the session
-		unset($_SESSION['username']);
+		session_unset();
 				session_destroy(); // for good measure
 
 				// redirect to home page
 				header('Location: '.BASE_URL.'/posts');
+	} 
+	public function registerSubmit() {
+			// get post data
+			$uname  = $_POST['uname'];
+			$passwd = $_POST['passwd'];
+			$email  = $_POST['email'];
+
+			// do some simple form validation
+
+			// are all the required fields filled?
+			if ($uname == '' || $passwd == '' || $email == '') {
+				// missing form data; send us back
+				$_SESSION['registerError'] = 'Please complete all registration fields.';
+				header('Location: '.BASE_URL);
+				exit();
 			}
-		} 
+
+			// is username in use?
+			$user = AppUser::loadByUsername($uname);
+			if(!is_null($user)) {
+				// username already in use; send us back
+				$_SESSION['registerError'] = 'Sorry, that username is already in use. Please pick a unique one.';
+				header('Location: '.BASE_URL);
+				exit();
+			}
+
+			// okay, let's register
+			$user = new AppUser();
+			$user->set('user_name', $uname);
+			$user->set('pw', $passwd);
+			$user->set('email', $email);
+			$user->save(); // save to db
+
+			// log in this freshly created user
+			$_SESSION['user_id'] = $user->getId();
+			$_SESSION['username'] = $uname;
+			$_SESSION['error'] = "You successfully registered as ".$uname.".";
+
+			// redirect to home page
+			header('Location: '.BASE_URL.'/posts');
+			exit();
+	}
+}
 
 		?>

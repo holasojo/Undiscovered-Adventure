@@ -97,7 +97,7 @@ class Db {
 
 public function createPost($title, $content){
 	//create a row
-	$sql =  "INSERT INTO posts (title, content, author_id) VALUES ('$title', '$content', 1);";
+	$sql =  "INSERT INTO posts (title, content, author_id) VALUES ('$title', '$content', '{$_SESSION['user_id']}');";
 
 	// query create a post
 	if (mysqli_query($this->conn,$sql)) {
@@ -138,7 +138,7 @@ public function deletePost($pid){
 	// Formats a string for use in SQL queries.
 	// Use this on ANY string that comes from external sources (i.e. the user).
 public function quoteString($s) {
-	return "'" . mysqli_real_escape_string($s) . "'";
+	return "'" . mysqli_real_escape_string($this->conn, $s) . "'";
 }
 
 	// Formats a date (i.e. UNIX timestamp) for use in SQL queries.
@@ -156,9 +156,9 @@ public function lookup($query) {
 
 	//Execute operations like UPDATE or INSERT
 public function execute($query) {
-	$ex = mysqli_query($query);
+	$ex = mysqli_query($this->conn, $query);
 	if(!$ex)
-		die ('Query failed:' . mysqli_error());
+		die ('Query failed:' . mysqli_error($this->conn));
 }
 
 	//Build an INSERT query.  Mostly here to make things neater elsewhere.

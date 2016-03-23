@@ -7,30 +7,30 @@ class AppUser extends DbObject {
     // database fields
     protected $id;
     protected $user_name;
-    protected $user_pw;
-    protected $first_name;
-    protected $last_name;
-    protected $user_email;
+    protected $pw;
+    //protected $first_name;
+    //protected $last_name;
+    protected $email;
 
     // constructor
     public function __construct($args = array()) {
         $defaultArgs = array(
             'id' => null,
             'user_name' => '',
-            'user_pw' => '',
-            'user_email' => null,
-            'user_firstname' => null,
-            'user_lastname' => null
+            'pw' => '',
+            'email' => null
+            //'first_name' => null,
+            //'last_name' => null
             );
 
         $args += $defaultArgs;
 
         $this->id = $args['id'];
         $this->user_name = $args['user_name'];
-        $this->user_pw = $args['user_pw'];
-        $this->user_email = $args['user_email'];
-        $this->user_firstname = $args['user_firstname'];
-        $this->user_lastname = $args['user_lastname'];
+        $this->pw = $args['pw'];
+        $this->email = $args['email'];
+        //$this->first_name = $args['first_name'];
+        //$this->last_name = $args['last_name'];
     }
 
     // save changes to object
@@ -39,10 +39,10 @@ class AppUser extends DbObject {
         // omit id and any timestamps
         $db_properties = array(
             'user_name' => $this->user_name,
-            'user_pw' => $this->user_pw,
-            'user_email' => $this->user_email,
-            'user_firstname' => $this->user_firstname,
-            'user_lastname' => $this->user_lastname
+            'pw' => $this->pw,
+            'email' => $this->email
+            //'first_name' => $this->first_name,
+            //'last_name' => $this->last_name
             );
         $db->store($this, __CLASS__, self::DB_TABLE, $db_properties);
     }
