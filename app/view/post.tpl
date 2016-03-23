@@ -79,12 +79,16 @@
 
     <!-- shows up the title from database -->
 
-    <h2 class = "title"><?php echo $post->get('title'); ?></h2>
+    <h2 class = "title"><?php 
+        $author_id = $post->get('author_id');
+        $author = AppUser::loadById($author_id);
+        $author_name = $author->get('user_name');
+        echo "Title: ".$post->get('title')."<br />By: ".$author_name; ?></h2>
     <!-- shows up content from database -->
     <p class="content"> <?php echo $post->get('content'); ?></p>
 
     <!-- edit and delete button only can be seen when logged in -->
-    <?php if(isset($_SESSION['username'])) { ?>
+    <?php if(isset($_SESSION['username']) && $_SESSION['user_id'] == $post->getId()) { ?>
     <form name="editForm" id="editform" method="POST" action="<?= BASE_URL ?>/posts/<?= $postID ?>/edit">
     <!-- submit after done editing -->
        <input type="submit" class="Buttons" name ="editButton" value="Edit">

@@ -41,21 +41,21 @@
     <div id="infos">
         <h3>Join Us! </h3>
         <!-- sign up form -->
-        <form name ="SignUpForm" method="post" action="<?= BASE_URL ?>/app/model/sign-up.php" target="dummyframe">
+        <form name ="SignUpForm" method="post" action="<?= BASE_URL ?>/register">
         <!-- email -->
         <div>
             <label class="email-label" for="email">Email</label>
-            <input type="email" id="email" name="txt_email" >
+            <input type="email" id="email" name="email" >
         </div>
         <!-- pw -->
         <div>
             <label class="pw-label" for="user_pw">Password</label>
-            <input type="password" id="user_pw" name="txt_pw">
+            <input type="password" id="user_pw" name="passwd">
         </div>
         <!-- username -->
         <div>
             <label class="id-label" for="user_ID">Username</label>
-            <input type="text" id="user_ID" name="txt_username" >
+            <input type="text" id="user_ID" name="uname" >
         </div>
 
 

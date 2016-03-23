@@ -56,7 +56,7 @@
         ?>
         <!-- when not logged in -->
         <form class ="loginForm" method="POST" action="<?= BASE_URL ?>/login">
-            <a name="pageName" >
+            <!--<a name="pageName" >-->
                 <label>Username: <input type="text" name="uname"></label>
                 <label>Password: <input type="password" name="pw"></label>
                 <input type="submit" name="submit" value="Log in">
@@ -84,8 +84,10 @@
     <!-- getting posts from the database and display as list view using a loop -->
     <ul class ='posts'>
         <?php
-
         foreach($posts as $post) {
+        $author_id = $post->get('author_id');
+        $author = AppUser::loadById($author_id);
+        $author_name = $author->get('user_name');
         $postID = $post->get('id'); 
         $postTitle = $post->get('title');
         $postContent = $post->get('content');
@@ -98,7 +100,7 @@
     echo '
 
     <li class ="post">
-        <a class ="title" href="'.BASE_URL.'/posts/'.$postID.'">'.$postTitle.'</a>
+        <a class ="title" href="'.BASE_URL.'/posts/'.$postID.'">Title: '.$postTitle.'<br />  By: '.$author_name.'</a>
         <p> <br class = "content">'.$stringCut.'...<a href="'.BASE_URL.'/posts/'.$postID.'">Read More</a></p>
     </li>
     ';

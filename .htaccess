@@ -10,6 +10,7 @@ RewriteRule ^mapPage/?$ app/controller/siteController.php?action=mapPage [QSA,L]
 RewriteRule ^browse/?$ app/controller/siteController.php?action=browse [QSA,L]
 RewriteRule ^logout/?$ app/controller/siteController.php?action=logout [QSA,L]
 RewriteRule ^login/?$ app/controller/siteController.php?action=login [QSA,L]
+RewriteRule ^register/?$ app/controller/siteController.php?action=registerSubmit [QSA,L]
 RewriteRule ^create/?$ app/controller/siteController.php?action=create [QSA,L]
 RewriteRule ^upload/?$ app/controller/siteController.php?action=upload [QSA,L]
 
