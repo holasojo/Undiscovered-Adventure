@@ -88,7 +88,7 @@
     <p class="content"> <?php echo $post->get('content'); ?></p>
 
     <!-- edit and delete button only can be seen when logged in -->
-    <?php if(isset($_SESSION['username']) && $_SESSION['user_id'] == $post->getId()) { ?>
+    <?php if(isset($_SESSION['username']) && $_SESSION['user_id'] == $post->get('author_id')) { ?>
     <form name="editForm" id="editform" method="POST" action="<?= BASE_URL ?>/posts/<?= $postID ?>/edit">
     <!-- submit after done editing -->
        <input type="submit" class="Buttons" name ="editButton" value="Edit">
