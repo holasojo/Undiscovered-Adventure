@@ -95,9 +95,9 @@ class Db {
 
 }
 
-public function createPost($title, $content){
+public function createPost($title, $content, $lat, $long){
 	//create a row
-	$sql =  "INSERT INTO posts (title, content, author_id) VALUES ('$title', '$content', '{$_SESSION['user_id']}');";
+	$sql =  "INSERT INTO posts (title, content, latitude, longitude, author_id) VALUES ('$title', '$content', '$lat','$long','{$_SESSION['user_id']}');";
 
 	// query create a post
 	if (mysqli_query($this->conn,$sql)) {

@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/footer.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js">
     </script>
-    <script src="<?= BASE_URL ?>/public/js/index.js"></script>
+  
 
 
 </script>
@@ -22,14 +22,12 @@
 
     <div class="header">
         <div class="header_content">
+            <h1> Undiscovered Adventure </h1>
             <ul class="navbar">
-                <li><h1> Undiscovered Adventure </h1></li>
-                <div class ="navigate">
                 <li><a href="<?= BASE_URL ?>/browse">Browse</a></li>
                 <li><a href="<?= BASE_URL ?>/posts">Posts</a></li>
                 <li><a href="<?= BASE_URL ?>/mapPage">Map</a></li>
                 <li><a href="<?= BASE_URL ?>/photos">Photos</a></li>
-                </div>
                 <li>
                     <form class="search">
                         <input type="text" id="search_bar" placeholder="Seoul, Korea" required>
