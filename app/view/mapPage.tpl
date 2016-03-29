@@ -10,11 +10,12 @@
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js">
     </script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABQlT55ZLiU7jOIhZAAU6EFhp4v219z7s&callback=initMap">
+    </script>
+
     <script src="<?= BASE_URL ?>/public/js/mapPage.js"></script>
    
 
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABQlT55ZLiU7jOIhZAAU6EFhp4v219z7s&callback=initMap">
-    </script>
 
 
     <!--    <script src="/js/home.js"></script>-->
@@ -78,19 +79,48 @@
 
 <div class="contents">
 <!-- examples -->
-    <a class="post_title" href="#">1. My Trip to Seoul 2K15</a>
-    <p class="post_detail">This is my first time visiting Asia. Korea was amazing and exceptional. Good food, good people, good atmostphere. I absolutely loved everything about the country. I would like to share my experience.. Day 1, my friend(Korean American) and I landed in Incheon. Then, we took a bus to get into the city area. The trip took about an hour or so. Thankfully, there was no tr ...</p>
+    <ul class ='posts'>
+        <?php
+        foreach($posts as $post) {
+        $author_id = $post->get('author_id');
+        $author = AppUser::loadById($author_id);
+        $author_name = $author->get('user_name');
+        $postID = $post->get('id'); 
+        $postTitle = $post->get('title');
+        $postContent = $post->get('content');
+        $lat = $post->get('latitude');
+        $lng = $post->get('longitude');
+        $stringCut = $postContent;
+        if(strlen($postContent)>200){
+        $stringCut = substr($postContent, 0, 300);
+    }
 
-    <a class="post_title" href="#">2. Living in Seoul</a>
-    <p class="post_detail">I have lived in Seoul for 5 years. A few of probably knows that I lived in Japan for 3 years as well. While I lived in Japan, I made a couple of trips to Korea and I enjoyed it very much. Of course, that is not the main reason why I moved to Seoul. But yes, I ended up here. Living in Seoul is very difficult than it seems.1. The language is different. Not that I don't want to learn Korean ... </p>
 
-    <a class="post_title" href="#">3. My Favorite City</a>
-    <p class="post_detail">I have lived in Seoul for 5 years. A few of probably knows that I lived in Japan for 3 years as well. While I lived in Japan, I made a couple of trips to Korea and I enjoyed it very much. Of course, that is not the main reason why I moved to Seoul. But yes, I ended up here. Living in Seoul is very difficult than it seems.1. The language is different. Not that I don't want to learn Korean ... </p>
-    <a class="post_title" href="#">4. Street Food Tour in Seoul</a>
-    <p class="post_detail">I have lived in Seoul for 5 years. A few of probably knows that I lived in Japan for 3 years as well. While I lived in Japan, I made a couple of trips to Korea and I enjoyed it very much. Of course, that is not the main reason why I moved to Seoul. But yes, I ended up here. Living in Seoul is very difficult than it seems.1. The language is different. Not that I don't want to learn Korean ... </p>
+    echo '
 
-    <a class="post_title" href="#">5. The city never sleeps</a>
-    <p class="post_detail">I have lived in Seoul for 5 years. A few of probably knows that I lived in Japan for 3 years as well. While I lived in Japan, I made a couple of trips to Korea and I enjoyed it very much. Of course, that is not the main reason why I moved to Seoul. But yes, I ended up here. Living in Seoul is very difficult than it seems.1. The language is different. Not that I don't want to learn Korean ... </p>
+    <li class ="post">
+        <a class ="post_title" href="'.BASE_URL.'/posts/'.$postID.'">Title: '.$postTitle.'<br />  By: '.$author_name.'</a>
+        <p><br class = "post_detail">'.$stringCut.'...<a href="'.BASE_URL.'/posts/'.$postID.'">Read More</a></p>
+        
+
+<!-- 
+        <input type="hidden" id="lat" value= "<?php echo $lat ?>" />
+        <input type="hidden" id="lng" value="<?php echo $lng ?>" /> -->
+    </li>
+    ';
+
+
+
+}
+?>
+<script type="text/javascript">
+var lat = "<?= $lat ?>";
+var lng = "<?= $lng ?>";
+</script>
+<script type="text/javascript" src="<?= BASE_URL ?>/public/js/mapPage.js"></script>
+
+</ul>
+
 
 
 

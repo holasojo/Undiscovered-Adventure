@@ -9,13 +9,17 @@
   <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/footer.css">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js">
   </script>
- 
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABQlT55ZLiU7jOIhZAAU6EFhp4v219z7s&libraries=places">
+  </script>
+
+  <script src="<?= BASE_URL ?>/public/js/uploadLocation.js">
+  </script>
+
+ <!--  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABQlT55ZLiU7jOIhZAAU6EFhp4v219z7s&libraries=places">
+</script> -->
 
 
-</script>
 
-
-<!--    <script src="/js/home.js"></script>-->
 </head>
 
 <body>
@@ -42,12 +46,19 @@
 
   <div class="contents">
 
-  <!-- submit Form -->
+    <!-- submit Form -->
 
     <form class = "submitPost"  method="POST" action="<?= BASE_URL ?>/create" onsubmit="return confirm('Are you sure you want to submit?');">
-    <!-- title -->
+      <!-- title -->
       Title:<br>
       <input type="text" name="title" id ="title_box"><br>
+      <!-- location -->
+      <label for="location">Location</label>
+      <input id="location" type="text" size="50">
+      <!-- <input type="hidden" id="city2" name="city2" /> -->
+      <input type="hidden" id="cityLat" name="cityLat" />
+      <input type="hidden" id="cityLng" name="cityLng" />  
+
       <!-- content -->
       Content:<br>
       <textarea name="content" cols="40" rows="5" id="content_box"></textarea>
@@ -61,12 +72,12 @@
 
 
   <ul class="footer">
- <li><a href="<?= BASE_URL ?>">Index</a></li>
-     <li><a href="#">About</a></li>
-    <li><a href="#">Q&amp;A</a></li>
-    <li><a href="#">Contact</a></li>
+   <li><a href="<?= BASE_URL ?>">Index</a></li>
+   <li><a href="#">About</a></li>
+   <li><a href="#">Q&amp;A</a></li>
+   <li><a href="#">Contact</a></li>
 
-  </ul>
+ </ul>
 
 
 </body>

@@ -10,6 +10,8 @@ class BlogPost extends DbObject {
     protected $content;
     protected $author_id;
     protected $date_created;
+    protected $latitude;
+    protected $longitude;
 
     // constructor
     public function __construct($args = array()) {
@@ -18,6 +20,8 @@ class BlogPost extends DbObject {
             'title' => '',
             'content' => '',
             'author_id' => 0,
+            'latitude' => 0,
+            'longitude' => 0,
             'date_created' => null
             );
 
@@ -26,6 +30,8 @@ class BlogPost extends DbObject {
         $this->id = $args['id'];
         $this->title = $args['title'];
         $this->content = $args['content'];
+        $this->latitude = $args['latitude'];
+        $this->longitude = $args['longitude'];
         $this->author_id = $args['author_id'];
         $this->date_created = $args['date_created'];
     }
@@ -64,9 +70,9 @@ class BlogPost extends DbObject {
    }
 
    //use createPost() in database class
-   public function create($title,$content){
+   public function create($title,$content, $lat, $long){
        $db = Db::instance();
-       $db->createPost($title, $content);
+       $db->createPost($title, $content, $lat, $long);
 
 
    }

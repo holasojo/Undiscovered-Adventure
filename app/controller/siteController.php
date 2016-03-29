@@ -53,7 +53,9 @@ class SiteController {
 			case 'create':
 			$postTitle = $_POST['title'];
 			$postContent = $_POST['content'];
-			$this->create($postTitle, $postContent);
+			$cityLat = $_POST['cityLat'];
+			$cityLong = $_POST['cityLng'];
+			$this->create($postTitle, $postContent, $cityLat, $cityLong);
 			break;
 
 			case 'registerSubmit':
@@ -69,7 +71,7 @@ class SiteController {
 	}
 
 	public function mapPage() {
-
+		$posts = BlogPost::getAllPosts();
 		include_once SYSTEM_PATH.'/view/mapPage.tpl';
 	}
 
@@ -91,11 +93,13 @@ class SiteController {
 		include_once SYSTEM_PATH.'/view/upload.tpl';
 	}
 
-	public function create($title, $content){
+	public function create($title, $content,$cityLat,$cityLong){
 		$u_title = $title;
 		$u_content=$content;
+		$u_lat = $cityLat;
+		$u_long = $cityLong;
 		//create method in BlogPost class
-		BlogPost::create($u_title, $u_content);
+		BlogPost::create($u_title, $u_content, $u_lat, $u_long);
 		//redirects to posts page to see it.
 		header('Location: '.BASE_URL.'/posts');
 
