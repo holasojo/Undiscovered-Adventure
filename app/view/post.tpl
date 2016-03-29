@@ -11,6 +11,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js">
     </script>
     <script src="<?= BASE_URL ?>/public/js/index.js"></script>
+    <script src="<?= BASE_URL ?>/app/view/ajax.js"></script>
 
 
 </script>
@@ -84,6 +85,11 @@
         $author = AppUser::loadById($author_id);
         $author_name = $author->get('user_name');
         echo "Title: ".$post->get('title')."<br />By: ".$author_name; ?></h2>
+    <!--vote -->
+    <h3><?php 
+    echo $post->get('vote')." people liked this  ";
+    ?> <a href="" onclick="ajaxLike(<?php echo $post->get('id') ?>)" class="likeButton">Like</a>
+    </h3>
     <!-- shows up content from database -->
     <p class="content"> <?php echo $post->get('content'); ?></p>
 

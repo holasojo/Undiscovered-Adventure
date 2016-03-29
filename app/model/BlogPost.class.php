@@ -12,6 +12,7 @@ class BlogPost extends DbObject {
     protected $date_created;
     protected $latitude;
     protected $longitude;
+    protected $vote;
 
     // constructor
     public function __construct($args = array()) {
@@ -22,7 +23,8 @@ class BlogPost extends DbObject {
             'author_id' => 0,
             'latitude' => 0,
             'longitude' => 0,
-            'date_created' => null
+            'date_created' => null,
+            'vote' => ''
             );
 
         $args += $defaultArgs;
@@ -34,6 +36,7 @@ class BlogPost extends DbObject {
         $this->longitude = $args['longitude'];
         $this->author_id = $args['author_id'];
         $this->date_created = $args['date_created'];
+        $this->vote = $args['vote'];
     }
 
     // save changes to object
