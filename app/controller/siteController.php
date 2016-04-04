@@ -139,12 +139,14 @@ class SiteController {
 			// log me in
 			$_SESSION['user_id'] = $user->getId();
 			$_SESSION['username'] = $username;
+			$_SESSION['usergroup'] = $user->get('usergroup');
 			$_SESSION['error'] = "You are logged in as ".$username.".";
+			header('Location: '.BASE_URL.'/posts');
 		}
 
 
 		// redirect to profile page
-		header('Location: '.BASE_URL.'/profile/'.$username.'');
+		//header('Location: '.BASE_URL.'/profile/'.$username.'');
 	}
 
 	public function logout() {
@@ -160,6 +162,7 @@ class SiteController {
 			$uname  = $_POST['uname'];
 			$passwd = $_POST['passwd'];
 			$email  = $_POST['email'];
+			$adminID = $_POST['adminid'];
 
 			// do some simple form validation
 
@@ -185,11 +188,29 @@ class SiteController {
 			$user->set('user_name', $uname);
 			$user->set('pw', $passwd);
 			$user->set('email', $email);
+			
+			$ordinaryUser = 1; 
+			$isadmin = 5; 
+			$ugroup; 
+			
+			// In order to become an admin, registering user needs to have the key. 
+			/// check if this user will become an admin, if so, the usergroup will be 5
+			if($adminID == 'admin3744'){
+				$user->set('usergroup', $isadmin);
+				$ugroup = $isadmin; 
+			}
+			
+			else{
+				$user->set('usergroup', $ordinaryUser); 
+				$ugroup = $ordinaryUser; 
+			}
+		
 			$user->save(); // save to db
 
 			// log in this freshly created user
 			$_SESSION['user_id'] = $user->getId();
 			$_SESSION['username'] = $uname;
+			$_SESSION['usergroup'] = $ugroup; 
 			$_SESSION['error'] = "You successfully registered as ".$uname.".";
 
 			// redirect to home page

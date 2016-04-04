@@ -57,7 +57,12 @@
             <label class="id-label" for="user_ID">Username</label>
             <input type="text" id="user_ID" name="uname" >
         </div>
-
+		
+		<!-- admin code -->
+        <div>
+            <label class="admin-label" for="admin_ID">If you're an admin, type admin key</label>
+            <input type="text" id="admin_ID" name="adminid" >
+        </div>
 
 
         <div>

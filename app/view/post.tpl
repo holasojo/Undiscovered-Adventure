@@ -88,13 +88,23 @@
     <!--vote -->
     <h3><?php 
     echo $post->get('vote')." people liked this  ";
-    ?> <a href="" onclick="ajaxLike(<?php echo $post->get('id') ?>)" class="likeButton">Like</a>
+    ?> 
+	<!-- like button can only be seen by user logged in -->
+	 <?php if(isset($_SESSION['username'])) { ?>
+	<a href="" onclick="ajaxLike(<?php echo $post->get('id') ?>)" class="likeButton">Like</a>  <?php
+	}
+	else{
+	  echo  "<br>";
+	  echo "Like this post? Log in to like this post!";
+	}
+?>
+	
+	
     </h3>
     <!-- shows up content from database -->
     <p class="content"> <?php echo $post->get('content'); ?></p>
-
-    <!-- edit and delete button only can be seen when logged in and it's your post-->
-    <?php if(isset($_SESSION['username']) && $_SESSION['user_id'] == $post->get('author_id')) { ?>
+    <!-- edit and delete button only can be seen when logged in and it's your post or you are an admin-->
+    <?php if(isset($_SESSION['username']) && ($_SESSION['user_id'] == $post->get('author_id') || ($_SESSION['usergroup']) == 5)) { ?>
     <form name="editForm" id="editform" method="POST" action="<?= BASE_URL ?>/posts/<?= $postID ?>/edit">
     <!-- submit after done editing -->
        <input type="submit" class="Buttons" name ="editButton" value="Edit">

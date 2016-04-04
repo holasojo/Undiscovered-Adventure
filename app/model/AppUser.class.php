@@ -11,6 +11,8 @@ class AppUser extends DbObject {
     //protected $first_name;
     //protected $last_name;
     protected $email;
+	
+	protected $usergroup;
 
     // constructor
     public function __construct($args = array()) {
@@ -18,9 +20,8 @@ class AppUser extends DbObject {
             'id' => null,
             'user_name' => '',
             'pw' => '',
-            'email' => null
-            //'first_name' => null,
-            //'last_name' => null
+            'email' => null,
+            'usergroup' => null
             );
 
         $args += $defaultArgs;
@@ -29,6 +30,7 @@ class AppUser extends DbObject {
         $this->user_name = $args['user_name'];
         $this->pw = $args['pw'];
         $this->email = $args['email'];
+		$this->usergroup = $args['usergroup'];
         //$this->first_name = $args['first_name'];
         //$this->last_name = $args['last_name'];
     }
@@ -40,7 +42,8 @@ class AppUser extends DbObject {
         $db_properties = array(
             'user_name' => $this->user_name,
             'pw' => $this->pw,
-            'email' => $this->email
+            'email' => $this->email,
+			'usergroup' => $this->usergroup
             //'first_name' => $this->first_name,
             //'last_name' => $this->last_name
             );

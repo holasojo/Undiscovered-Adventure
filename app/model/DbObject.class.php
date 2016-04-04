@@ -21,6 +21,10 @@ class DbObject {
     public function getId() {
         return ($this->id);   
     }
+	
+	public function getUserGroup(){
+		return ($this->usergroup);
+	}
     
     public function set($field=null, $val=null) {
         if($field == null)
