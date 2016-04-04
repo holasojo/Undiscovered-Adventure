@@ -11,7 +11,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js">
     </script>
     <script src="<?= BASE_URL ?>/public/js/index.js"></script>
-    <script src="<?= BASE_URL ?>/app/view/ajax.js"></script>
+    <script src="<?= BASE_URL ?>/public/js/ajax.js"></script>
 
 
 </script>

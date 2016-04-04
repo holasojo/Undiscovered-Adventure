@@ -64,12 +64,15 @@
 
             <?php
         } else {
-        ?>
-        <!-- when logged in -->
-        <p>Logged in as <strong><?= $_SESSION['username'] ?></strong>. <a href="<?= BASE_URL ?>/logout">Log out?</a></p>
-        <br> <a href="<?= BASE_URL ?>/upload">Upload?</a> 
+        $username = $_SESSION['username'];
+        echo '
+        <p>Logged in as <a href="'.BASE_URL.'/profile/'.$username.'">
+        <strong>'. $username .'</strong></a><br>
+        <a href="'.BASE_URL.'/upload">Upload?</a> 
+        <a href="'.BASE_URL.'/logout">Log out?</a></p>
+        
 
-        <?php
+       ';
     }
     ?>
 </div>

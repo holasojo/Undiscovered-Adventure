@@ -48,6 +48,11 @@ class SiteController {
 			$this->upload();
 			break;
 
+			case 'profile':
+			$username = $_GET['username'];
+			$this->profile($username);
+			break;
+
 			//gets called when submitting the new post
 			//and actually creates the post in the database
 			case 'create':
@@ -81,6 +86,18 @@ class SiteController {
 		include_once SYSTEM_PATH.'/view/browse.tpl';
 	}
 
+	public function profile($pname){
+		$username = $pname;
+			// get data for author of post
+		$user = AppUser::loadByUsername($username);
+
+
+		$followings = FollowingUser::getFollowing($user->get('id'));
+		$followers = FollowingUser::getFollowers($user->get('id'));
+
+		// $followers = 
+		include_once SYSTEM_PATH.'/view/profile.tpl';
+	}
 
 	public function photos() {
 		$pageTitle = 'Photos Page!';
@@ -125,21 +142,9 @@ class SiteController {
 			$_SESSION['error'] = "You are logged in as ".$username.".";
 		}
 
-		/*if($username != ADMIN_USERNAME) {
-					// username not found
-			$_SESSION['error'] = "Incorrect username.";
-		} elseif ($passwd != ADMIN_PASSWORD) {
-					// passwords don't match
-			$_SESSION['error'] = "Incorrect password.";
-		} else {
-					// password matches
-					// log in
-			$_SESSION['username'] = $username;
-			$_SESSION['error'] = "You are logged in as ".$username.".";
-		}*/
 
-		// redirect to posts page
-		header('Location: '.BASE_URL.'/posts');
+		// redirect to profile page
+		header('Location: '.BASE_URL.'/profile/'.$username.'');
 	}
 
 	public function logout() {

@@ -1,0 +1,19 @@
+#forms h1 {
+    font-size: 80px;
+    color: white;
+    text-shadow: 3px 3px darkslategrey;
+    font-family: 'Swistblnk';
+    margin-bottom: 25px;
+}
+
+
+
+@font-face {
+    font-family: 'Swistblnk';
+    src: url('../font/Swistblnk Duwhoers Brush.ttf');
+}
+
+@font-face {
+    font-family: 'Modernist';
+    src: url('../font/Sk-Modernist-Regular.otf');
+}
