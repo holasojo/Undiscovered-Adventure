@@ -75,9 +75,7 @@ class BlogPost extends DbObject {
    //use createPost() in database class
    public function create($title,$content, $lat, $long){
        $db = Db::instance();
-       $db->createPost($title, $content, $lat, $long);
-
-
+       return $db->createPost($title, $content, $lat, $long);
    }
     // load all posts on this blog
    public static function getAllPosts($limit=null) {
@@ -96,6 +94,10 @@ class BlogPost extends DbObject {
         return ($objects);
     }
 }
+    public function getUrl() {
+        include_once SYSTEM_PATH.'/view/helpers.php';
+        return getUrl($this);
+    }
 
 
 

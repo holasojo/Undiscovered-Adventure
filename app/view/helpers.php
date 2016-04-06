@@ -1,0 +1,136 @@
+<?php
+
+
+function getUrl($obj=null) {
+  $url = '';
+
+  switch(get_class($obj)) {
+    case 'AppUser':
+      $username = $obj->get('user_name');
+      $url = BASE_URL.'/users/'.$username;
+      break;
+
+    case 'BlogPost':
+      $bpid = $obj->get('id');
+      $url = BASE_URL.'/posts/'.$bpid;
+    break;
+  }
+
+  return $url;
+}
+
+
+function formatEvent($e=null) {
+
+  $formatted = '';
+
+  $et = EventType::loadById($e->get('event_type_id'));
+  $eventTypeName = $et->get('name');
+
+  switch($eventTypeName) {
+    case 'add_blog_post':
+      // get the nicely formatted date
+      // various examples here: http://php.net/manual/en/function.date.php
+      $formattedDate = date("F j, Y, g:i a", strtotime($e->get('date_created')));
+
+      // get user's full name
+      $user = AppUser::loadById($e->get('user_1_id'));
+      $userUrl = $user->getUrl();
+      $userName = $user->get('user_name');
+
+      // get blogpost title
+      $bp = BlogPost::loadById($e->get('blog_post_id'));
+      if ($bp == null) {
+        $formatted = sprintf("<a href=\"%s\">%s</a> deleted the post that was created on %s.",
+        $userUrl,
+        $userName,
+        $formattedDate
+        );
+        break;
+      }
+      $blogPostTitle = $bp->get('title');
+      $blogPostUrl = $bp->getUrl();
+
+      // produce the formatted string
+      $formatted = sprintf("<a href=\"%s\">%s</a> created the post <a href=\"%s\">%s</a> on %s.",
+        $userUrl,
+        $userName,
+        $blogPostUrl,
+        $blogPostTitle,
+        $formattedDate
+        );
+    break;
+
+    case 'edit_blog_post':
+      // get the nicely formatted date
+      // various examples here: http://php.net/manual/en/function.date.php
+      $formattedDate = date("F j, Y, g:i a", strtotime($e->get('date_created')));
+
+      // get user's full name
+      $user = AppUser::loadById($e->get('user_1_id'));
+      $userUrl = $user->getUrl();
+      $userName = $user->get('user_name');
+
+      // get blogpost title
+      $bp = BlogPost::loadById($e->get('blog_post_id'));
+      if ($bp == null) {
+        $formatted = sprintf("<a href=\"%s\">%s</a> deleted the post that was editted on %s.",
+        $userUrl,
+        $userName,
+        $formattedDate
+        );
+        break;
+      }
+      $blogPostTitle = $bp->get('title');
+      $blogPostUrl = $bp->getUrl();
+
+      // produce the formatted string
+      $formatted = sprintf("<a href=\"%s\">%s</a> editted the post <a href=\"%s\">%s</a> on %s.",
+        $userUrl,
+        $userName,
+        $blogPostUrl,
+        $blogPostTitle,
+        $formattedDate
+        );
+    break;
+
+    case 'delete_blog_post':
+      // get the nicely formatted date
+      // various examples here: http://php.net/manual/en/function.date.php
+      $formattedDate = date("F j, Y, g:i a", strtotime($e->get('date_created')));
+
+      // get user's full name
+      $user = AppUser::loadById($e->get('user_1_id'));
+      $userUrl = $user->getUrl();
+      $userName = $user->get('user_name');
+
+      // get blogpost title
+      $bp = BlogPost::loadById($e->get('blog_post_id'));
+      if ($bp == null) {
+        $formatted = sprintf("<a href=\"%s\">%s</a> deleted a post on %s.",
+        $userUrl,
+        $userName,
+        $formattedDate
+        );
+        break;
+      }
+      $blogPostTitle = $bp->get('title');
+      $blogPostUrl = $bp->getUrl();
+
+      // produce the formatted string
+      $formatted = sprintf("<a href=\"%s\">%s</a> deleted the post %s on %s.",
+        $userUrl,
+        $userName,
+        $blogPostTitle,
+        $formattedDate
+        );
+    break;
+
+    default:
+      $formatted = 'Event formatting not found.';
+      break;
+  }
+
+  return $formatted;
+
+}

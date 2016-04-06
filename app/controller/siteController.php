@@ -116,7 +116,13 @@ class SiteController {
 		$u_lat = $cityLat;
 		$u_long = $cityLong;
 		//create method in BlogPost class
-		BlogPost::create($u_title, $u_content, $u_lat, $u_long);
+		$blogID = BlogPost::create($u_title, $u_content, $u_lat, $u_long);
+		$logEvent = new Event(array(
+			'event_type_id' => EventType::getIdByName('add_blog_post'),
+			'user_1_id' => $_SESSION['user_id'],
+			'blog_post_id' => $blogID
+		));
+		$logEvent->save(); // log the event
 		//redirects to posts page to see it.
 		header('Location: '.BASE_URL.'/posts');
 

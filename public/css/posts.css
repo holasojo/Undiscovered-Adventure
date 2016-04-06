@@ -35,14 +35,19 @@ body{
 
 .contents {
     position: absolute;
-    left: 22%;
+    left: 25%;
     bottom: 0;
     height:85vh;
     width: 57%;
     overflow: auto;
    
 }
-
+div#feed {
+    float: left;
+    display: block;
+    text-align: left;
+    padding-top: 7%;
+}
 
 .posts .post{
     

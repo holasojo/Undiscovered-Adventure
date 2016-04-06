@@ -78,9 +78,23 @@
 </div>
 </div>
 </div>
+<div id="feed">
+    <h3>Activity Feed</h3>
+<?php
 
+    if(count($events) > 0) {
+        echo '<ul>';
+
+        foreach($events as $e) {
+            echo '<li>'.formatEvent($e).'</li>';
+        }
+
+        echo '</ul>';
+    }
+
+?>
+</div>
 <div class="contents">
-
 
     <!-- getting posts from the database and display as list view using a loop -->
     <ul class ='posts'>

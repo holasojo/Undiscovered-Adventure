@@ -102,6 +102,7 @@ public function createPost($title, $content, $lat, $long){
 	// query create a post
 	if (mysqli_query($this->conn,$sql)) {
 		echo "New record created successfully";
+		return $this->conn->insert_id;
 	} else {
 		//if it did not update
 		?>

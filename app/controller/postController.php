@@ -50,6 +50,9 @@ class PostController {
 	public function posts() {
 			// get all posts from this blogpostController
 		$posts = BlogPost::getAllPosts();
+		// get all events
+		$events = Event::getAllEvents();
+		include_once SYSTEM_PATH.'/view/helpers.php';
 		include_once SYSTEM_PATH.'/view/posts.tpl';
 	}
 
@@ -90,15 +93,26 @@ class PostController {
 		$post = BlogPost::loadById($postID);
 		//update method exists in BlogPost class.
 		BlogPost::update($postID, $title, $content);
+		$logEvent = new Event(array(
+			'event_type_id' => EventType::getIdByName('edit_blog_post'),
+			'user_1_id' => $_SESSION['user_id'],
+			'blog_post_id' => $postID
+		));
+		$logEvent->save(); // log the event
 		//redirect to the previous page
 		header('Location: '.BASE_URL.'/posts/'.$postID);
 	}
 
 	public function delete($pid){
 		$postID = $pid;
-		$post = BlogPost::loadById($postID);
 		//delete method exists in BlogPost class.
 		BlogPost::delete($postID);
+		$logEvent = new Event(array(
+			'event_type_id' => EventType::getIdByName('delete_blog_post'),
+			'user_1_id' => $_SESSION['user_id'],
+			'blog_post_id' => $postID
+		));
+		$logEvent->save(); // log the event
 		//redirect to posts after the post gets deleted.
 		header('Location: '.BASE_URL.'/posts');
 	}

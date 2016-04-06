@@ -78,5 +78,9 @@ class AppUser extends DbObject {
             return ($obj);
         }
     }
+    public function getUrl() {
+        include_once SYSTEM_PATH.'/view/helpers.php';
+        return getUrl($this);
+    }
 
 }
