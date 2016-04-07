@@ -92,8 +92,8 @@ class SiteController {
 		$user = AppUser::loadByUsername($username);
 
 
-		$followings = FollowingUser::getFollowing($user->get('id'));
-		$followers = FollowingUser::getFollowers($user->get('id'));
+		//$followings = FollowingUser::getFollowing($user->get('id'));
+		//$followers = FollowingUser::getFollowers($user->get('id'));
 
 		// $followers = 
 		include_once SYSTEM_PATH.'/view/profile.tpl';

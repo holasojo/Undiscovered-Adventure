@@ -51,21 +51,21 @@ class FollowingUser extends DbObject {
 
 
     public static function getFollowing($user_id=null) {
-    $query = sprintf(" SELECT id FROM %s WHERE user_id = '%s' ",
-        self::DB_TABLE, $user_id
-        );
-    $db = Db::instance();
-    $result = $db->lookup($query);
-    if(!mysqli_num_rows($result))
-        return null;
-    else {
-        $objects = array();
-        while($row = mysqli_fetch_assoc($result)) {
-            $objects[] = self::loadById($row['id']);
+        $query = sprintf(" SELECT id FROM %s WHERE user_id = '%s' ",
+            self::DB_TABLE, $user_id
+            );
+        $db = Db::instance();
+        $result = $db->lookup($query);
+        if(!mysqli_num_rows($result))
+            return null;
+        else {
+            $objects = array();
+            while($row = mysqli_fetch_assoc($result)) {
+                $objects[] = self::loadById($row['id']);
+            }
+            return ($objects);
         }
-        return ($objects);
     }
-}
 
 
     public static function getFollowers($user_id = null){

@@ -43,39 +43,8 @@
     </div>
     <!-- login Form -->
     <div id="login">
-        <span id="error">
-            <?php
-            if(isset($_SESSION['error'])) {
-            if($_SESSION['error'] != '') {
-            echo $_SESSION['error'];
-            $_SESSION['error'] = '';
-        }
-    }
-    ?>
-</span>
-<!-- only will be shown when the user is not logged in -->
-<?php
-if( !isset($_SESSION['username']) || $_SESSION['username'] == '') {
-?>
-
-<form class ="loginForm" method="POST" action="<?= BASE_URL ?>/login">
-    <a name="pageName" >
-        <label>Username: <input type="text" name="uname"></label>
-        <label>Password: <input type="password" name="pw"></label>
-        <input type="submit" name="submit" value="Log in">
-    </form>
-    <!-- when the user is logged in -->
-    <?php
-} else {
-?>
-
-<p>Logged in as <strong><?= $_SESSION['username'] ?></strong>. <a href="<?= BASE_URL ?>/logout">Log out?</a></p>
-<br> <a href="<?= BASE_URL ?>/upload">Upload?</a> 
-
-<?php
-}
-?>
-</div>
+        <?php include(dirname(__DIR__).'/view/sidebar.php'); ?>
+    </div>
 
 
 <!-- contents made with table -->
