@@ -82,5 +82,12 @@ class AppUser extends DbObject {
         include_once SYSTEM_PATH.'/view/helpers.php';
         return getUrl($this);
     }
+    public function isFollowing($followeeID=null) {
+      if($followeeID == null)
+        return false;
+
+
+      return (Follow::areFollowing($this->id, $followeeID));
+    }
 
 }

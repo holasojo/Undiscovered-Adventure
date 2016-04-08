@@ -25,7 +25,7 @@
         echo '
             <br><p>Logged in as <a href="'.BASE_URL.'/profile/'.$username.'">
             <strong>'. $username .'</strong></a>
-            <br> <a href="'.BASE_URL.'/profile/'.$username.'">Home</a> 
+            <br> <a href="'.BASE_URL.'/users/'.$username.'">Home</a> 
             <br> <a href="'.BASE_URL.'/upload">Upload</a> 
             <br> <a href="'.BASE_URL.'/settings">Settings</a> 
             <br> <a href="'.BASE_URL.'/logout">Log out?</a></p>

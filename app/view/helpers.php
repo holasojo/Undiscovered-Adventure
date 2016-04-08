@@ -126,6 +126,54 @@ function formatEvent($e=null) {
         );
     break;
 
+    case 'followed_user':
+      // get the nicely formatted date
+      // various examples here: http://php.net/manual/en/function.date.php
+      $formattedDate = date("F j, Y, g:i a", strtotime($e->get('date_created')));
+
+      // get user's full name
+      $user1 = AppUser::loadById($e->get('user_1_id'));
+      $userUrl1 = $user1->getUrl();
+      $userName1 = $user1->get('user_name');
+
+      $user2 = AppUser::loadById($e->get('user_2_id'));
+      $userUrl2 = $user2->getUrl();
+      $userName2 = $user2->get('user_name');
+
+      // produce the formatted string
+      $formatted = sprintf("<a href=\"%s\">%s</a> followed <a href=\"%s\">%s</a> on %s.",
+        $userUrl1,
+        $userName1,
+        $userUrl2,
+        $userName2,
+        $formattedDate
+        );
+    break;
+
+    case 'got_follower':
+      // get the nicely formatted date
+      // various examples here: http://php.net/manual/en/function.date.php
+      $formattedDate = date("F j, Y, g:i a", strtotime($e->get('date_created')));
+
+      // get user's full name
+      $user1 = AppUser::loadById($e->get('user_1_id'));
+      $userUrl1 = $user1->getUrl();
+      $userName1 = $user1->get('user_name');
+
+      $user2 = AppUser::loadById($e->get('user_2_id'));
+      $userUrl2 = $user2->getUrl();
+      $userName2 = $user2->get('user_name');
+
+      // produce the formatted string
+      $formatted = sprintf("<a href=\"%s\">%s</a> got a new follower: <a href=\"%s\">%s</a> on %s.",
+        $userUrl1,
+        $userName1,
+        $userUrl2,
+        $userName2,
+        $formattedDate
+        );
+    break;
+
     default:
       $formatted = 'Event formatting not found.';
       break;

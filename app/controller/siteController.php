@@ -53,6 +53,18 @@ class SiteController {
 			$this->profile($username);
 			break;
 
+			case 'editProfile':
+			$username = $_GET['username'];
+			$this->editProfile($username);
+			break;
+
+			case 'updateProfile':
+			$username = $_GET['username'];
+			$new_username = $_POST['edit_username'];
+			$new_email = $_POST['edit_email'];
+			$this->updateProfile($username, $new_username, $new_email);
+			break;
+
 			//gets called when submitting the new post
 			//and actually creates the post in the database
 			case 'create':
@@ -66,6 +78,10 @@ class SiteController {
 			case 'registerSubmit':
 				$this->registerSubmit();
 				break;			
+
+			case 'followUser':
+				$this->followUser();
+				break;
 		}
 	}
 
@@ -91,13 +107,58 @@ class SiteController {
 			// get data for author of post
 		$user = AppUser::loadByUsername($username);
 
-
+		$userid = $user->get('id');
 		//$followings = FollowingUser::getFollowing($user->get('id'));
 		//$followers = FollowingUser::getFollowers($user->get('id'));
 
 		// $followers = 
+		// get all events
+		$events = Event::getAllEventsByUserID($userid);
+		include_once SYSTEM_PATH.'/view/helpers.php';
 		include_once SYSTEM_PATH.'/view/profile.tpl';
 	}
+
+	public function editProfile($pname){
+		$username = $pname;
+			// get data for author of post
+		$user = AppUser::loadByUsername($username);
+
+		include_once SYSTEM_PATH.'/view/editProfile.tpl';
+	}
+
+	public function updateProfile($old_username, $new_username, $email){
+		if ($old_username == $new_username) {
+			$_SESSION['updateError'] = '';
+			header('Location: '.BASE_URL.'/users/'.$old_username.'/editProfile');
+			exit();
+		}
+		
+		// are all the required fields filled?
+		if ($new_username == '' || $email == '') {
+			// missing form data; send us back
+			$_SESSION['updateError'] = 'Please complete all registration fields.';
+			header('Location: '.BASE_URL.'/users/'.$old_username.'/editProfile');
+			exit();
+		}
+		$user = AppUser::loadByUsername($new_username);
+		// is username in use?
+		if(!is_null($user)) {
+			// username already in use; send us back
+			$_SESSION['updateError'] = 'Sorry, that username is already in use. Please pick a unique one.';
+			header('Location: '.BASE_URL.'/users/'.$old_username.'/editProfile');
+			exit();
+		}
+		$user = AppUser::loadByUsername($old_username);
+		//$user->set('user_name', $new_username);
+		$user->set('user_name', $new_username);
+		$user->set('email', $email);
+		$user->save();
+		//redirect to the previous page
+		//include_once SYSTEM_PATH.'/view/profile.tpl';
+		$_SESSION['username'] = $new_username;
+		header('Location: '.BASE_URL.'/users/'.$new_username);
+	}
+
 
 	public function photos() {
 		$pageTitle = 'Photos Page!';
@@ -222,6 +283,61 @@ class SiteController {
 			// redirect to home page
 			header('Location: '.BASE_URL.'/posts');
 			exit();
+	}
+
+	public function followUser() {
+			header('Content-Type: application/json'); // set the header to hint the response type (JSON) for JQuery's Ajax method
+
+			$userID = null;
+			if(isset($_POST['userID']))
+				$userID = $_POST['userID']; // get the username data
+
+			// make sure it's a real username
+			if(is_null($userID) || $userID == '') {
+				echo json_encode(array('error' => 'Invalid user ID.'));
+			} else {
+
+				$user = AppUser::loadByID($userID);
+				// does the user exist?
+				if(!is_null($user)) {
+
+					// get userID of follower (logged-in user)
+					$follower = AppUser::loadByUsername($_SESSION['username']);
+					$followerID = $follower->get('id');
+
+					// they're not already following each other right?
+					if(Follow::areFollowing($followerID, $userID)) {
+						echo json_encode(array('error' => 'You are already following this user.'));
+					} else {
+
+						// save the follow connection
+						$follow = new Follow(array(
+							'follower' => $followerID,
+							'followee' => $userID
+						));
+						$follow->save();
+						$logEvent = new Event(array(
+							'event_type_id' => EventType::getIdByName('followed_user'),
+							'user_1_id' => $followerID,
+							'user_2_id' => $userID
+						));
+						$logEvent->save(); // log the event
+						$logEvent = new Event(array(
+							'event_type_id' => EventType::getIdByName('got_follower'),
+							'user_1_id' => $userID,
+							'user_2_id' => $followerID
+						));
+						$logEvent->save(); // log the event
+						echo json_encode(array(
+							'success' => 'success'
+						));
+					}
+				} else {
+					echo json_encode(array(
+						'error' => 'That user does not exist.'
+					));
+				}
+			}
 	}
 }
 
