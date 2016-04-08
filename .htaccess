@@ -13,8 +13,11 @@ RewriteRule ^login/?$ app/controller/siteController.php?action=login [QSA,L]
 RewriteRule ^register/?$ app/controller/siteController.php?action=registerSubmit [QSA,L]
 RewriteRule ^create/?$ app/controller/siteController.php?action=create [QSA,L]
 RewriteRule ^upload/?$ app/controller/siteController.php?action=upload [QSA,L]
+<<<<<<< HEAD
 RewriteRule ^users/(.*)/updateProfile/?$ app/controller/siteController.php?action=updateProfile&username=$1 [QSA,L]
 RewriteRule ^users/(.*)/editProfile/?$ app/controller/siteController.php?action=editProfile&username=$1 [QSA,L]
+=======
+>>>>>>> f85d6055cd8758e7049ce499f8e952edb5df95b0
 RewriteRule ^users/(.*)/?$ app/controller/siteController.php?action=profile&username=$1 [QSA,L]
 
 RewriteRule ^photos/?$ app/controller/siteController.php?action=photos [QSA,L]
