@@ -53,6 +53,18 @@ class SiteController {
 			$this->profile($username);
 			break;
 
+			case 'editProfile':
+			$username = $_GET['username'];
+			$this->editProfile($username);
+			break;
+
+			case 'updateProfile':
+			$username = $_GET['username'];
+			$new_username = $_POST['edit_username'];
+			$new_email = $_POST['edit_email'];
+			$this->updateProfile($username, $new_username, $new_email);
+			break;
+
 			//gets called when submitting the new post
 			//and actually creates the post in the database
 			case 'create':
@@ -96,8 +108,53 @@ class SiteController {
 		//$followers = FollowingUser::getFollowers($user->get('id'));
 
 		// $followers = 
+		// get all events
+		$events = Event::getAllEventsByUserID($_SESSION['user_id']);
+		include_once SYSTEM_PATH.'/view/helpers.php';
 		include_once SYSTEM_PATH.'/view/profile.tpl';
 	}
+
+	public function editProfile($pname){
+		$username = $pname;
+			// get data for author of post
+		$user = AppUser::loadByUsername($username);
+
+		include_once SYSTEM_PATH.'/view/editProfile.tpl';
+	}
+
+	public function updateProfile($old_username, $new_username, $email){
+		if ($old_username == $new_username) {
+			$_SESSION['updateError'] = '';
+			header('Location: '.BASE_URL.'/users/'.$old_username.'/editProfile');
+			exit();
+		}
+		
+		// are all the required fields filled?
+		if ($new_username == '' || $email == '') {
+			// missing form data; send us back
+			$_SESSION['updateError'] = 'Please complete all registration fields.';
+			header('Location: '.BASE_URL.'/users/'.$old_username.'/editProfile');
+			exit();
+		}
+		$user = AppUser::loadByUsername($new_username);
+		// is username in use?
+		if(!is_null($user)) {
+			// username already in use; send us back
+			$_SESSION['updateError'] = 'Sorry, that username is already in use. Please pick a unique one.';
+			header('Location: '.BASE_URL.'/users/'.$old_username.'/editProfile');
+			exit();
+		}
+		$user = AppUser::loadByUsername($old_username);
+		//$user->set('user_name', $new_username);
+		$user->set('user_name', $new_username);
+		$user->set('email', $email);
+		$user->save();
+		//redirect to the previous page
+		//include_once SYSTEM_PATH.'/view/profile.tpl';
+		$_SESSION['username'] = $new_username;
+		header('Location: '.BASE_URL.'/users/'.$new_username);
+	}
+
 
 	public function photos() {
 		$pageTitle = 'Photos Page!';

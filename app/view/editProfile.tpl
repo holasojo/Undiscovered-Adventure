@@ -77,142 +77,35 @@
 
 </div>
 </div>
-<div id="feed">
-    <h3>Activity Feed</h3>
-<?php
-
-    if(count($events) > 0) {
-        echo '<ul>';
-
-        foreach($events as $e) {
-            echo '<li>'.formatEvent($e).'</li>';
-        }
-
-        echo '</ul>';
-    }
-
-?>
-</div>
 
 <div class="contents">
   <!-- getting posts from the database and display as list view using a loop -->
     <ul id="profile_info">
         <?php
         $email = $user->get('email');
-        $admin = "no";
-        if ($user->get('usergroup') == 5) {
-          $admin = "yes";
-        }
-        $my_page = FALSE;
-        if (isset($_SESSION['username']) && $_SESSION['username'] == $username) {
-          $my_page = TRUE;
-        }
-
-
-    echo '
-
+    ?>    
+    <form class = "editPost"  method="POST" action="<?= BASE_URL ?>/users/<?= $username ?>/updateProfile" onsubmit="return confirm('Are you sure you want to submit?');">
+    <?php echo '
     <li>
-        Username: '.$username.'
+        Username: <input type="text" name="edit_username" id ="username_box"  value="'.$username.'">
     </li>
     <li>
-        Email: '.$email.'
+        Email: <input type="text" name="edit_email" id ="email_box"  value="'.$email.'">
     </li>
-    <li>
-        Admin: '.$admin.'
-    </li>
+    <input type="submit" class="Buttons" name ="updateButton" value="Update">
+    </form>
     ';?>
+    <span class="error">
     <?php
-    if ($my_page) { ?>
-      <form name="editForm" id="editform" method="POST" action="<?= BASE_URL ?>/users/<?= $username ?>/editProfile">
-        <!-- submit after done editing -->
-        <input type="submit" class="Buttons" name ="editButton" value="Edit">
-      </form>
-    <?php } ?>
+      if(isset($_SESSION['updateError'])) {
+        if($_SESSION['updateError'] != '') {
+          echo $_SESSION['updateError'];
+        $_SESSION['updateError'] = '';
+        }
+      }
+    ?>
+  </span>
 </ul>
- <!-- if the user in session is in different person's profile, they can see the follow button
- else, if the user in his/hers own profile page, cannot see the follow button but can see edit button -->
- <!--
- <div class = "follow_view">
-   <?php
-
-   if (isset($_SESSION['username'])){
-      if ($logged_name != $username) {
-   ?>
-   <form id="follow" method="post">
-   <input type="button" id="followButton" 
-   onclick="followUser('<?php echo $logged_name ?>', '<?php echo $username ?>')" 
-   value="Follow">
-  </form>
-  </div>
-  <?php
-    }
-  }else{}
-?>
--->
-
-
-<!-- the user follows other users -->
-<!--
-<div class ="followers">
-  <ul class = "follower_list">
-   <?php
-   $follow_num = sizeof($followers);
-   echo '<p> '. $follow_num .' followers</p>';
-   if($follow_num != 0){
-   foreach($followers as $follower) {
-   $follow_id = $follower->get('user_id');
-   $user = AppUser::loadByID($follow_id);
-   $user_name = $user->get('user_name');
-
-   echo '
-
-   <li class ="follower_username">
-    <a href="'.BASE_URL.'/profile/'.$user_name.'">
-      <strong>'. $user_name .'</strong></a><br>
-    </li>
-    ';
-  }
-}
-
-
-?>
-</ul>
-
-</div>
--->
-<!-- other users following the user -->
-<!--
-<div class= "follwing">
-
-  <ul class = "following_list">
-   <?php
-   $num = sizeof($followings);
-   echo '<p> '. $num .' following</p>';
-   if($num != 0){
-   foreach($followings as $following) {
-   $follow_id = $following->get('following_id');
-   $user = AppUser::loadByID($follow_id);
-   $user_name = $user->get('user_name');
-
-   echo '
-
-   <li class ="following_username">
-    <a href="'.BASE_URL.'/profile/'.$user_name.'">
-      <strong>'. $user_name .'</strong></a><br>
-    </li>
-    ';
-  }
-
-
-}
-?>
-</ul>
-
-</div>
-
-</div>
--->
-
 </div>
 
 <ul class="footer">
