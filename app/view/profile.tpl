@@ -130,10 +130,6 @@ $(document).ready(function(){
 </div>
 
 <div class="contents">
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> c7f05448e274e15d1d394d81ba641f90745c7c90
 <?php
   
   // first and foremost, is user logged in?
@@ -150,11 +146,6 @@ $(document).ready(function(){
   }
 
   ?>
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 256d1cf3477ae65e438b8e7b05a3f26849d34ee7
->>>>>>> c7f05448e274e15d1d394d81ba641f90745c7c90
   <!-- getting posts from the database and display as list view using a loop -->
     <ul id="profile_info">
         <?php
@@ -189,89 +180,6 @@ $(document).ready(function(){
       </form>
     <?php } ?>
 </ul>
- <!-- if the user in session is in different person's profile, they can see the follow button
- else, if the user in his/hers own profile page, cannot see the follow button but can see edit button -->
- <!--
- <div class = "follow_view">
-   <?php
-
-   if (isset($_SESSION['username'])){
-      if ($logged_name != $username) {
-   ?>
-   <form id="follow" method="post">
-   <input type="button" id="followButton" 
-   onclick="followUser('<?php echo $logged_name ?>', '<?php echo $username ?>')" 
-   value="Follow">
-  </form>
-  </div>
-  <?php
-    }
-  }else{}
-?>
--->
-
-
-<!-- the user follows other users -->
-<!--
-<div class ="followers">
-  <ul class = "follower_list">
-   <?php
-   $follow_num = sizeof($followers);
-   echo '<p> '. $follow_num .' followers</p>';
-   if($follow_num != 0){
-   foreach($followers as $follower) {
-   $follow_id = $follower->get('user_id');
-   $user = AppUser::loadByID($follow_id);
-   $user_name = $user->get('user_name');
-
-   echo '
-
-   <li class ="follower_username">
-    <a href="'.BASE_URL.'/profile/'.$user_name.'">
-      <strong>'. $user_name .'</strong></a><br>
-    </li>
-    ';
-  }
-}
-
-
-?>
-</ul>
-
-</div>
--->
-<!-- other users following the user -->
-<!--
-<div class= "follwing">
-
-  <ul class = "following_list">
-   <?php
-   $num = sizeof($followings);
-   echo '<p> '. $num .' following</p>';
-   if($num != 0){
-   foreach($followings as $following) {
-   $follow_id = $following->get('following_id');
-   $user = AppUser::loadByID($follow_id);
-   $user_name = $user->get('user_name');
-
-   echo '
-
-   <li class ="following_username">
-    <a href="'.BASE_URL.'/profile/'.$user_name.'">
-      <strong>'. $user_name .'</strong></a><br>
-    </li>
-    ';
-  }
-
-
-}
-?>
-</ul>
-
-</div>
-
-</div>
--->
 
 </div>
 
