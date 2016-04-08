@@ -103,13 +103,13 @@ class SiteController {
 			// get data for author of post
 		$user = AppUser::loadByUsername($username);
 
-
+		$userid = $user->get('id');
 		//$followings = FollowingUser::getFollowing($user->get('id'));
 		//$followers = FollowingUser::getFollowers($user->get('id'));
 
 		// $followers = 
 		// get all events
-		$events = Event::getAllEventsByUserID($_SESSION['user_id']);
+		$events = Event::getAllEventsByUserID($userid);
 		include_once SYSTEM_PATH.'/view/helpers.php';
 		include_once SYSTEM_PATH.'/view/profile.tpl';
 	}
