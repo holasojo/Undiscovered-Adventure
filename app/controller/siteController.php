@@ -127,7 +127,8 @@ class SiteController {
 	}
 
 	public function updateProfile($old_username, $new_username, $email){
-		if ($old_username == $new_username) {
+		$user = AppUser::loadByUsername($old_username);
+		if ($old_username == $new_username && $email == $user->get('email')) {
 			$_SESSION['updateError'] = '';
 			header('Location: '.BASE_URL.'/users/'.$old_username.'/editProfile');
 			exit();
@@ -140,22 +141,26 @@ class SiteController {
 			header('Location: '.BASE_URL.'/users/'.$old_username.'/editProfile');
 			exit();
 		}
+		
 		$user = AppUser::loadByUsername($new_username);
 		// is username in use?
 		if(!is_null($user)) {
 			// username already in use; send us back
 			$_SESSION['updateError'] = 'Sorry, that username is already in use. Please pick a unique one.';
-			header('Location: '.BASE_URL.'/users/'.$old_username.'/editProfile');
-			exit();
+			
 		}
 		$user = AppUser::loadByUsername($old_username);
-		//$user->set('user_name', $new_username);
-		$user->set('user_name', $new_username);
-		$user->set('email', $email);
+		if ($old_username != $new_username) {
+			$user->set('user_name', $new_username);
+		}
+		if ($email != $user->get('email')) {
+			$user->set('email', $email);
+		}
 		$user->save();
 		//redirect to the previous page
 		//include_once SYSTEM_PATH.'/view/profile.tpl';
 		$_SESSION['username'] = $new_username;
+		$_SESSION['updateError'] = '';
 		header('Location: '.BASE_URL.'/users/'.$new_username);
 	}
 
