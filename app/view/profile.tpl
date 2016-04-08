@@ -130,6 +130,7 @@ $(document).ready(function(){
 </div>
 
 <div class="contents">
+<<<<<<< HEAD
 <?php
   
   // first and foremost, is user logged in?
@@ -146,6 +147,8 @@ $(document).ready(function(){
   }
 
   ?>
+=======
+>>>>>>> 256d1cf3477ae65e438b8e7b05a3f26849d34ee7
   <!-- getting posts from the database and display as list view using a loop -->
     <ul id="profile_info">
         <?php
