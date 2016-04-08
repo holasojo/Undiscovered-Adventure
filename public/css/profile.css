@@ -6,7 +6,33 @@
     margin-bottom: 25px;
 }
 
+ul {
+	list-style-type: none;
+	display: table;
+	margin: 0 auto;
+}
 
+li {
+	font-size: 200%;
+}
+.contents {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    bottom: 0;
+    height:85vh;
+    width: 57%;
+    overflow: auto;
+   
+}
+
+div#feed {
+    float: left;
+    display: block;
+    text-align: left;
+    padding-top: 7%;
+    font-size: 75%;
+}
 
 @font-face {
     font-family: 'Swistblnk';

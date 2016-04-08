@@ -69,6 +69,22 @@ class Event extends DbObject {
       return $events;
     }
 
+    public static function getAllEventsByUserID($id) {
+      $db = Db::instance();
+
+      $q = sprintf("SELECT * FROM %s WHERE user_1_id = %s ORDER BY date_created DESC ",
+        self::DB_TABLE, $id
+        );
+      $result = $db->lookup($q);
+
+      $events = array();
+      while($row = mysqli_fetch_assoc($result)) {
+        $events[] = self::loadById($row['id']);
+      }
+
+      return $events;
+    }
+
 
 
 }
