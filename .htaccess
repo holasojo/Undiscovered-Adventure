@@ -21,6 +21,7 @@ RewriteRule ^users/(.*)/updateProfile/?$ app/controller/siteController.php?actio
 RewriteRule ^users/(.*)/editProfile/?$ app/controller/siteController.php?action=editProfile&username=$1 [QSA,L]
 RewriteRule ^users/(.*)/?$ app/controller/siteController.php?action=profile&username=$1 [QSA,L]
 
+RewriteRule ^photos/json/?$ app/controller/siteController.php?action=visualJson [QSA,L]
 RewriteRule ^photos/?$ app/controller/siteController.php?action=photos [QSA,L]
 
 # Post
