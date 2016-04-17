@@ -24,6 +24,10 @@ class SiteController {
 			$this->photos();
 			break;
 
+			case 'visualJson':
+			$this->visualJson();
+			break;
+
 			//mapPage. 
 			case 'mapPage':
 			$this->mapPage();
@@ -127,7 +131,8 @@ class SiteController {
 	}
 
 	public function updateProfile($old_username, $new_username, $email){
-		if ($old_username == $new_username) {
+		$user = AppUser::loadByUsername($old_username);
+		if ($old_username == $new_username && $email == $user->get('email')) {
 			$_SESSION['updateError'] = '';
 			header('Location: '.BASE_URL.'/users/'.$old_username.'/editProfile');
 			exit();
@@ -140,22 +145,26 @@ class SiteController {
 			header('Location: '.BASE_URL.'/users/'.$old_username.'/editProfile');
 			exit();
 		}
+		
 		$user = AppUser::loadByUsername($new_username);
 		// is username in use?
 		if(!is_null($user)) {
 			// username already in use; send us back
 			$_SESSION['updateError'] = 'Sorry, that username is already in use. Please pick a unique one.';
-			header('Location: '.BASE_URL.'/users/'.$old_username.'/editProfile');
-			exit();
+			
 		}
 		$user = AppUser::loadByUsername($old_username);
-		//$user->set('user_name', $new_username);
-		$user->set('user_name', $new_username);
-		$user->set('email', $email);
+		if ($old_username != $new_username) {
+			$user->set('user_name', $new_username);
+		}
+		if ($email != $user->get('email')) {
+			$user->set('email', $email);
+		}
 		$user->save();
 		//redirect to the previous page
 		//include_once SYSTEM_PATH.'/view/profile.tpl';
 		$_SESSION['username'] = $new_username;
+		$_SESSION['updateError'] = '';
 		header('Location: '.BASE_URL.'/users/'.$new_username);
 	}
 
@@ -164,6 +173,41 @@ class SiteController {
 		$pageTitle = 'Photos Page!';
 		$pageContent = 'Welcome. Under the construction....';
 		include_once SYSTEM_PATH.'/view/photos.tpl';
+	}
+
+	public function visualJson() {
+		header('Content-Type: application/json');
+		//get all users
+		$users = AppUser::getAllUsers();
+		$jsonUsers = array(); // array to hold json users
+		foreach($users as $user) {
+			// get all blog posts
+			$posts = BlogPost::getAllPosts();
+			$jsonPosts = array(); // array to hold json posts
+			foreach($posts as $post) {
+				//add only if post is by this user
+				if ($post->get('author_id') == $user->get('id')) {
+					// the json post object
+					$jsonPost = array(
+						'name' => $post->get('title'),
+						'post_id' => $post->get('id'),
+						'size' => 0
+					);
+					$jsonPosts[] = $jsonPost;
+				}
+			}
+			$jsonUser = array(
+				'name' => $user->get('user_name'),
+				'children' => $jsonPosts
+			);
+			$jsonUsers[] = $jsonUser;
+		}
+		// finally, the json root object
+		$json = array(
+			'name' => 'users',
+			'children' => $jsonUsers
+		);
+		echo json_encode($json);
 	}
 	
 
