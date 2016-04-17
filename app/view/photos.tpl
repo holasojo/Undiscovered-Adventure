@@ -123,6 +123,10 @@
         
    </div>
 
+   <div id="viz">
+        <h2>Visualization</h2>
+   </div>
+
 
 </div>
 <ul class="footer">

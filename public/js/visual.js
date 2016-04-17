@@ -9,7 +9,6 @@ function deletePost(postID) {
   $('#deletePostForm').show(); // show the form
   $('#deletePostForm input[type=hidden]').val(postID);
 }
-
 function drawCollapsibleTree(jsonUrl) {
 var margin = {top: 20, right: 120, bottom: 20, left: 120},
     width = 960 - margin.right - margin.left,
