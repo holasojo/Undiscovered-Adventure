@@ -269,7 +269,7 @@ function formatEvent($e=null) {
         $formattedDate
         );
     break;
-
+    
     default:
       $formatted = 'Event formatting not found.';
       break;

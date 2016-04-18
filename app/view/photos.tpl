@@ -147,7 +147,8 @@
     </form>
    </div>
    <?php } ?>
-
+   <div id="viz">
+   </div>
 </div>
 <ul class="footer">
    <li><a href="<?= BASE_URL ?>">Index</a></li>
