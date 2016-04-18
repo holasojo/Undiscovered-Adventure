@@ -7,19 +7,43 @@
     <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/browse.css">
     <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/header.css">
     <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/footer.css">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABQlT55ZLiU7jOIhZAAU6EFhp4v219z7s&libraries=places"></script>
+    <script src="<?= BASE_URL ?>/public/js/uploadLocation.js"></script>
+    <script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript" src="<?= BASE_URL ?>/public/js/visual.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            drawCollapsibleTree("<?= BASE_URL ?>/photos/json/");
+        });
     </script>
 
+<style type="text/css">
 
+.node {
+  cursor: pointer;
+}
 
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
 
+.node text {
+  font: 10px sans-serif;
+}
 
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
 
-    <!--    <script src="/js/home.js"></script>-->
+</style>
 </head>
 
 <body>
-
+<div class="wrapper">
     <div class="header">
         <div class="header_content">
             <h1> Undiscovered Adventure </h1>
@@ -53,7 +77,7 @@
         ?>
         <!-- when not logged in -->
         <form class ="loginForm" method="POST" action="<?= BASE_URL ?>/login">
-            <a name="pageName" >
+            <a name="pageName" ></a>
                 <label>Username: <input type="text" name="uname"></label>
                 <label>Password: <input type="password" name="pw"></label>
                 <input type="submit" name="submit" value="Log in">
@@ -75,10 +99,54 @@
 </div>
 
 <div class="contents">
-   <h2><?= $pageTitle ?></h2>
-
-   <p><?= $pageContent ?></p>
-
+   
+   <h2>Visualization</h2>
+    <span class="error">
+        <?php
+            if(isset($_SESSION['vizError'])) {
+                if($_SESSION['vizError'] != '') {
+                    echo $_SESSION['vizError'];
+                $_SESSION['vizError'] = '';
+                }
+            }
+        ?>
+    </span>
+    <div id="visual_and_forms">
+    <form id="editPostTitleForm" method="POST" action="<?= BASE_URL ?>/photos/editPostTitle" style="display: none;">
+        <label>Blog Post Title: <input type="text" name="postTitle" value="" style="width: 300px;"></label>
+        <input type="hidden" name="postID" value="">
+        <input type="submit" name="submit" value="Edit">
+    </form>
+    <form id="deletePostForm" method="POST" action="<?= BASE_URL ?>/photos/deletePost" style="display: none;">
+        <input type="hidden" name="postID" value="">
+        <input type="submit" name="submit" value="Delete">
+    </form>
+   <div id="viz">
+        
+   </div>
+   </div>
+   <?php if (isset($_SESSION['username'])) {?>
+   <div id="visual_create>">
+    <form class = "submitPost"  id="createFrom" method="POST" action="<?= BASE_URL ?>/vizCreate">
+      <!-- title -->
+      Title:<br>
+      <input type="text" name="title" id ="title_box"><br>
+      <!-- location -->
+      <label for="location">Location:</label><br />
+      <input id="location" type="text" size="50">
+      <!-- <input type="hidden" id="city2" name="city2" /> -->
+      <input type="hidden" id="cityLat" name="cityLat" />
+      <input type="hidden" id="cityLng" name="cityLng" />  
+      <br />
+      <!-- content -->
+      Content:<br />
+      <textarea name="content" cols="40" rows="5" id="content_box"></textarea>
+      <br />
+      <!-- submit buttton when done -->
+      <input type="submit" class="Buttons" name ="submitButton" value="Submit">
+    </form>
+   </div>
+   <?php } ?>
 
 </div>
 <ul class="footer">
@@ -89,7 +157,7 @@
 
 </ul>
 
-
+</div>
 
 </body>
 

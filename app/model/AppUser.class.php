@@ -78,6 +78,25 @@ class AppUser extends DbObject {
             return ($obj);
         }
     }
+
+    // load all users
+    public static function getAllUsers($limit=null) {
+        $query = sprintf(" SELECT id FROM %s ",
+            self::DB_TABLE
+        );
+        $db = Db::instance();
+        $result = $db->lookup($query);
+        if(!mysqli_num_rows($result))
+            return null;
+        else {
+            $objects = array();
+            while($row = mysqli_fetch_assoc($result)) {
+                $objects[] = self::loadById($row['id']);
+            }
+            return ($objects);
+        }
+    }
+
     public function getUrl() {
         include_once SYSTEM_PATH.'/view/helpers.php';
         return getUrl($this);

@@ -118,7 +118,13 @@ border-spacing: 0px;
     text-decoration: underline;
 }
 
+div#visual_and_forms {
+    float: left;
+}
 
+div#visual_create {
+    float: right;
+}
 
 
 @media screen and (max-width: 768px) {

@@ -34,12 +34,13 @@ body{
 
 
 .contents {
-    position: absolute;
+    padding-top: 7%;
     left: 25%;
     bottom: 0;
     height:85vh;
     width: 57%;
     overflow: auto;
+    float: right;
    
 }
 div#feed {

@@ -23,7 +23,7 @@
     } else {
         $username = $_SESSION['username'];
         echo '
-            <br><p>Logged in as <a href="'.BASE_URL.'/profile/'.$username.'">
+            <br><p>Logged in as <a href="'.BASE_URL.'/users/'.$username.'">
             <strong>'. $username .'</strong></a>
             <br> <a href="'.BASE_URL.'/users/'.$username.'">Home</a> 
             <br> <a href="'.BASE_URL.'/upload">Upload</a> 

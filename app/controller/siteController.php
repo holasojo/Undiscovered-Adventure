@@ -24,6 +24,10 @@ class SiteController {
 			$this->photos();
 			break;
 
+			case 'visualJson':
+			$this->visualJson();
+			break;
+
 			//mapPage. 
 			case 'mapPage':
 			$this->mapPage();
@@ -73,6 +77,14 @@ class SiteController {
 			$cityLat = $_POST['cityLat'];
 			$cityLong = $_POST['cityLng'];
 			$this->create($postTitle, $postContent, $cityLat, $cityLong);
+			break;
+
+			case 'vizCreate':
+			$postTitle = $_POST['title'];
+			$postContent = $_POST['content'];
+			$cityLat = $_POST['cityLat'];
+			$cityLong = $_POST['cityLng'];
+			$this->vizCreate($postTitle, $postContent, $cityLat, $cityLong);
 			break;
 
 			case 'registerSubmit':
@@ -127,7 +139,8 @@ class SiteController {
 	}
 
 	public function updateProfile($old_username, $new_username, $email){
-		if ($old_username == $new_username) {
+		$user = AppUser::loadByUsername($old_username);
+		if ($old_username == $new_username && $email == $user->get('email')) {
 			$_SESSION['updateError'] = '';
 			header('Location: '.BASE_URL.'/users/'.$old_username.'/editProfile');
 			exit();
@@ -140,22 +153,26 @@ class SiteController {
 			header('Location: '.BASE_URL.'/users/'.$old_username.'/editProfile');
 			exit();
 		}
+		
 		$user = AppUser::loadByUsername($new_username);
 		// is username in use?
 		if(!is_null($user)) {
 			// username already in use; send us back
 			$_SESSION['updateError'] = 'Sorry, that username is already in use. Please pick a unique one.';
-			header('Location: '.BASE_URL.'/users/'.$old_username.'/editProfile');
-			exit();
+			
 		}
 		$user = AppUser::loadByUsername($old_username);
-		//$user->set('user_name', $new_username);
-		$user->set('user_name', $new_username);
-		$user->set('email', $email);
+		if ($old_username != $new_username) {
+			$user->set('user_name', $new_username);
+		}
+		if ($email != $user->get('email')) {
+			$user->set('email', $email);
+		}
 		$user->save();
 		//redirect to the previous page
 		//include_once SYSTEM_PATH.'/view/profile.tpl';
 		$_SESSION['username'] = $new_username;
+		$_SESSION['updateError'] = '';
 		header('Location: '.BASE_URL.'/users/'.$new_username);
 	}
 
@@ -164,6 +181,41 @@ class SiteController {
 		$pageTitle = 'Photos Page!';
 		$pageContent = 'Welcome. Under the construction....';
 		include_once SYSTEM_PATH.'/view/photos.tpl';
+	}
+
+	public function visualJson() {
+		header('Content-Type: application/json');
+		//get all users
+		$users = AppUser::getAllUsers();
+		$jsonUsers = array(); // array to hold json users
+		foreach($users as $user) {
+			// get all blog posts
+			$posts = BlogPost::getAllPosts();
+			$jsonPosts = array(); // array to hold json posts
+			foreach($posts as $post) {
+				//add only if post is by this user
+				if ($post->get('author_id') == $user->get('id')) {
+					// the json post object
+					$jsonPost = array(
+						'name' => $post->get('title'),
+						'post_id' => $post->get('id'),
+						'size' => 0
+					);
+					$jsonPosts[] = $jsonPost;
+				}
+			}
+			$jsonUser = array(
+				'name' => $user->get('user_name'),
+				'children' => $jsonPosts
+			);
+			$jsonUsers[] = $jsonUser;
+		}
+		// finally, the json root object
+		$json = array(
+			'name' => 'users',
+			'children' => $jsonUsers
+		);
+		echo json_encode($json);
 	}
 	
 
@@ -186,6 +238,23 @@ class SiteController {
 		$logEvent->save(); // log the event
 		//redirects to posts page to see it.
 		header('Location: '.BASE_URL.'/posts');
+	}
+
+	public function vizCreate($title, $content,$cityLat,$cityLong){
+		$u_title = $title;
+		$u_content=$content;
+		$u_lat = $cityLat;
+		$u_long = $cityLong;
+		//create method in BlogPost class
+		$blogID = BlogPost::create($u_title, $u_content, $u_lat, $u_long);
+		$logEvent = new Event(array(
+			'event_type_id' => EventType::getIdByName('create_post_viz'),
+			'user_1_id' => $_SESSION['user_id'],
+			'blog_post_id' => $blogID
+		));
+		$logEvent->save(); // log the event
+		//redirects to posts page to see it.
+		header('Location: '.BASE_URL.'/photos');
 
 	}
 

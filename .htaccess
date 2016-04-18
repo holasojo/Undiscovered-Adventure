@@ -12,6 +12,7 @@ RewriteRule ^logout/?$ app/controller/siteController.php?action=logout [QSA,L]
 RewriteRule ^login/?$ app/controller/siteController.php?action=login [QSA,L]
 RewriteRule ^register/?$ app/controller/siteController.php?action=registerSubmit [QSA,L]
 RewriteRule ^create/?$ app/controller/siteController.php?action=create [QSA,L]
+RewriteRule ^vizCreate/?$ app/controller/siteController.php?action=vizCreate [QSA,L]
 RewriteRule ^upload/?$ app/controller/siteController.php?action=upload [QSA,L]
 RewriteRule ^users/follow/?$ app/controller/siteController.php?action=followUser [QSA,L]
 RewriteRule ^users/(.*)/updateProfile/?$ app/controller/siteController.php?action=updateProfile&username=$1 [QSA,L]
@@ -21,6 +22,9 @@ RewriteRule ^users/(.*)/updateProfile/?$ app/controller/siteController.php?actio
 RewriteRule ^users/(.*)/editProfile/?$ app/controller/siteController.php?action=editProfile&username=$1 [QSA,L]
 RewriteRule ^users/(.*)/?$ app/controller/siteController.php?action=profile&username=$1 [QSA,L]
 
+RewriteRule ^photos/json/?$ app/controller/siteController.php?action=visualJson [QSA,L]
+RewriteRule ^photos/editPostTitle/?$ app/controller/postController.php?action=editTitle [QSA,L]
+RewriteRule ^photos/deletePost/?$ app/controller/postController.php?action=deletePost [QSA,L]
 RewriteRule ^photos/?$ app/controller/siteController.php?action=photos [QSA,L]
 
 # Post
