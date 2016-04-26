@@ -157,6 +157,7 @@
 <!-- Drawing a pie chart for number of likes -->
 <div id="piechart"></div>
 <!-- javascript for the chart -->
+<!-- Getting info from posts -->
 <?php 
 foreach($posts as $post) {
 $title = $post->get('title');
@@ -164,7 +165,7 @@ $vote = $post->get('vote');
 $entry .= "['". $title ."',". $vote ."],";}
 
 ?>
-
+<!-- Creating a new chart with Google Chart -->
 <script type="text/javascript">
   google.load("visualization", "1", {packages:["corechart"]});
   google.setOnLoadCallback(drawChart);
