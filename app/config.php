@@ -8,7 +8,7 @@ define('BASE_URL','http://localhost/undiscovered_adventure');
 define('DB_HOST','127.0.0.1');
 define('DB_USER','root');
 define('DB_PASS','');
-define('DB_DATABASE','db');
+define('DB_DATABASE','cs3744db');
 
 // admin credentials
 define('ADMIN_USERNAME', 'admin');
