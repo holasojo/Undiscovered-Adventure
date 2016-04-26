@@ -159,6 +159,7 @@
 <!-- javascript for the chart -->
 <!-- Getting info from posts -->
 <?php 
+$entry = "";
 foreach($posts as $post) {
 $title = $post->get('title');
 $vote = $post->get('vote');
