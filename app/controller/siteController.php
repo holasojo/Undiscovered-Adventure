@@ -178,6 +178,7 @@ class SiteController {
 
 
 	public function photos() {
+		$posts = BlogPost::getAllPosts();
 		$pageTitle = 'Photos Page!';
 		$pageContent = 'Welcome. Under the construction....';
 		include_once SYSTEM_PATH.'/view/photos.tpl';

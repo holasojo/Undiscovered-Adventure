@@ -124,8 +124,14 @@ div#visual_and_forms {
 
 div#visual_create {
     float: right;
-}
+    margin:0 50px 0 0;
 
+}
+div#piechart{
+    display: inline-block;
+    width: 600px;
+    height: 600px;
+}
 
 @media screen and (max-width: 768px) {
     table{
