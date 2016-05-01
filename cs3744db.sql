@@ -137,26 +137,27 @@ CREATE TABLE `posts` (
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `longitude` double NOT NULL,
   `latitude` double NOT NULL,
-  `vote` int(100) NOT NULL DEFAULT '0'
+  `vote` int(100) NOT NULL DEFAULT '0',
+  `vote_IDs` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`id`, `title`, `content`, `author_id`, `date_created`, `longitude`, `latitude`, `vote`) VALUES
-(31, 'woohoo', 'yeah', 6, '2016-04-08 08:33:13', 0, 0, 2),
-(33, 'My new post!', 'WOOHOO', 1, '2016-04-17 17:02:59', 0, 0, 0),
-(34, 'Filler', 'Posts', 1, '2016-04-17 17:03:48', 0, 0, 0),
-(36, 'My cool post', 'wefwef', 6, '2016-04-17 17:05:43', 0, 0, 0),
-(37, 'Visual', '', 30, '2016-04-18 04:05:26', 0, 0, 0),
-(38, 'Test visual create', '', 30, '2016-04-18 04:06:03', 0, 0, 0),
-(39, 'Event', 'Test', 1, '2016-04-18 04:14:08', -86.5804473, 35.5174913, 0),
-(40, 'ge', 'ge', 1, '2016-04-26 01:00:25', 0, 0, 0),
-(41, 'n', 'n', 1, '2016-04-26 01:29:56', 0, 0, 0),
-(42, 'gr', 'gr', 1, '2016-04-26 01:33:03', 0, 0, 0),
-(43, 'grg', 'gr', 1, '2016-04-26 01:47:29', -79.9414266, 37.2709704, 0),
-(44, 'hi', 'fe', 1, '2016-04-26 01:49:25', -80.45490259999997, 38.59762619999999, 0);
+INSERT INTO `posts` (`id`, `title`, `content`, `author_id`, `date_created`, `longitude`, `latitude`, `vote`, `vote_IDs`) VALUES
+(31, 'woohoo', 'yeah', 6, '2016-04-08 08:33:13', 0, 0, 4, '7:8:9:30'),
+(33, 'My new post!', 'WOOHOO', 1, '2016-04-17 17:02:59', 0, 0, 0, ""),
+(34, 'Filler', 'Posts', 1, '2016-04-17 17:03:48', 0, 0, 0, ""),
+(36, 'My cool post', 'wefwef', 6, '2016-04-17 17:05:43', 0, 0, 0, ""),
+(37, 'Visual', '', 30, '2016-04-18 04:05:26', 0, 0, 0, ""),
+(38, 'Test visual create', '', 30, '2016-04-18 04:06:03', 0, 0, 0, ""),
+(39, 'Event', 'Test', 1, '2016-04-18 04:14:08', -86.5804473, 35.5174913, 0, ""),
+(40, 'ge', 'ge', 1, '2016-04-26 01:00:25', 0, 0, 0, ""),
+(41, 'n', 'n', 1, '2016-04-26 01:29:56', 0, 0, 0, ""),
+(42, 'gr', 'gr', 1, '2016-04-26 01:33:03', 0, 0, 0, ""),
+(43, 'grg', 'gr', 1, '2016-04-26 01:47:29', -79.9414266, 37.2709704, 0, ""),
+(44, 'hi', 'fe', 1, '2016-04-26 01:49:25', -80.45490259999997, 38.59762619999999, 0, "");
 
 -- --------------------------------------------------------
 
