@@ -4,15 +4,20 @@
 <head>
     <meta charset="utf-8">
     <title>Undiscovered Adventure</title>
-    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/posts.css">
-    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/header.css">
-    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/footer.css">
+
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js">
     </script>
     <script src="<?= BASE_URL ?>/public/js/index.js"></script>
     <script src="<?= BASE_URL ?>/public/js/ajax.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/navbar.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/upload.css">
 
 </script>
 
@@ -22,61 +27,47 @@
 
 <body>
 
-    <div class="header">
-        <div class="header_content">
-            <h1> Undiscovered Adventure </h1>
-            <ul class="navbar">
-                <li><a href="<?= BASE_URL ?>/browse">Browse</a></li>
-                <li><a href="<?= BASE_URL ?>/posts">Posts</a></li>
-                <li><a href="<?= BASE_URL ?>/mapPage">Map</a></li>
-                <li><a href="<?= BASE_URL ?>/photos">Photos</a></li>
-                <li>
-                    <form class="search">
-                        <input type="text" id="search_bar" placeholder="Seoul, Korea" required>
-                        <input type="button" id="search_button" value="Let's go!">
-                    </form>
-                </li>
-            </ul>
-            <!-- login form -->
-            <div id="login">
-                <span id="error">
-                    <?php
-                    if(isset($_SESSION['error'])) {
-                    if($_SESSION['error'] != '') {
-                    echo $_SESSION['error'];
-                    $_SESSION['error'] = '';
-                }
-            }
-            ?>
-        </span>
+   <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Undiscovered Adventure</a>
+    </div>
 
-        <?php
-        if( !isset($_SESSION['username']) || $_SESSION['username'] == '') {
-        ?>
-        <!-- when not logged in -->
-        <form class ="loginForm" method="POST" action="<?= BASE_URL ?>/login">
-            <a name="pageName" >
-                <label>Username: <input type="text" name="uname"></label>
-                <label>Password: <input type="password" name="pw"></label>
-                <input type="submit" name="submit" value="Log in">
-            </form>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="<?= BASE_URL ?>/feeds">Activity Feeds</a></li>
+        <li><a href="<?= BASE_URL ?>/posts">Posts </a></li>
+        <li><a href="<?= BASE_URL ?>/mapPage">Map</a></li>
 
-            <?php
-        } else {
-        ?>
+        <li><a href="<?= BASE_URL ?>/visualization">Visualization</a></li>
 
-        <!-- when logged in -->
-        <p>Logged in as <strong><?= $_SESSION['username'] ?></strong>. <a href="<?= BASE_URL ?>/logout">Log out?</a></p>
-        <br> <a href="<?= BASE_URL ?>/upload">Upload?</a> 
+    </ul>
+    <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+  </form>
 
-        <?php
-    }
-    ?>
-</div>
-</div>
+  <div id="login">
+    <?php include(dirname(__DIR__).'/view/sidebar.php'); ?>
 </div>
 
-<div class="contents">
+
+
+</div><!-- /.navbar-collapse -->
+</div><!-- /.container-fluid -->
+</nav>
+
+<div class="container center_div">
 
     <!-- shows up the title from database -->
 
@@ -85,51 +76,61 @@
         $author = AppUser::loadById($author_id);
         $author_name = $author->get('user_name');
         echo "Title: ".$post->get('title')."<br />By: ".$author_name; ?></h2>
-    <!--vote -->
-    <h3><?php 
-    echo $post->get('vote')." people liked this  ";
-    ?> 
-	<!-- like button can only be seen by user logged in -->
-	 <?php if(isset($_SESSION['username'])) { ?>
-	<a href="" onclick="ajaxLike(<?php echo $post->get('id') ?>)" class="likeButton">Like</a>  <?php
-	}
-	else{
-	  echo  "<br>";
-	  echo "Like this post? Log in to like this post!";
-	}
-?>
-	
-	
-    </h3>
-    <!-- shows up content from database -->
-    <p class="content"> <?php echo $post->get('content'); ?></p>
-    <!-- edit and delete button only can be seen when logged in and it's your post or you are an admin-->
-    <?php if(isset($_SESSION['username']) && ($_SESSION['user_id'] == $post->get('author_id') || ($_SESSION['usergroup']) == 5)) { ?>
-    <form name="editForm" id="editform" method="POST" action="<?= BASE_URL ?>/posts/<?= $postID ?>/edit">
+        <!--vote -->
+        <h3><?php 
+            echo $post->get('vote')." people liked this  ";
+            ?> 
+            <!-- like button can only be seen by user logged in -->
+            <?php if(isset($_SESSION['username'])) { ?>
+            <a href="" onclick="ajaxLike(<?php echo $post->get('id') ?>)" class="likeButton">Like</a>  <?php
+        }
+        else{
+        echo  "<br>";
+        echo "Like this post? Log in to like this post!";
+    }
+    ?>
+
+
+</h3>
+<!-- shows up content from database -->
+<p class="content"> <?php echo $post->get('content'); ?></p>
+<!-- edit and delete button only can be seen when logged in and it's your post or you are an admin-->
+<?php if(isset($_SESSION['username']) && ($_SESSION['user_id'] == $post->get('author_id') || ($_SESSION['usergroup']) == 5)) { ?>
+
+<form class="form-inline">
+  <div class="form-group">
+
+<form name="editForm" id="editform" method="POST" action="<?= BASE_URL ?>/posts/<?= $postID ?>/edit">
     <!-- submit after done editing -->
-       <input type="submit" class="Buttons" name ="editButton" value="Edit">
-   </form>
-   <!-- when trying to delete -->
-   <form name="deleteForm" id="deleteform" method="POST" action="<?= BASE_URL ?>/posts/<?= $postID ?>/delete" onsubmit="return confirm('Are you sure you want to delete?');">
+    <input type="submit"  class="btn btn-primary" name ="editButton" value="Edit">
+</form>
 
-       <input type="submit" class="Buttons" name ="deleteButton" value="Delete">
+</div>
+<!-- when trying to delete -->
+  <div class="form-group">
 
-   </form>
-   <?php
+<form name="deleteForm" id="deleteform" method="POST" action="<?= BASE_URL ?>/posts/<?= $postID ?>/delete" onsubmit="return confirm('Are you sure you want to delete?');">
+
+   <input type="submit"  class="btn btn-primary" name ="deleteButton" value="Delete">
+
+</form>
+</div>
+</form>
+<?php
 }
 ?>
 
 
 </div>
 
-
+<!-- 
 <ul class="footer">
    <li><a href="<?= BASE_URL ?>">Index</a></li>
   <li><a href="#">About</a></li>
   <li><a href="#">Q&amp;A</a></li>
   <li><a href="#">Contact</a></li>
 
-</ul>
+</ul> -->
 
 
 </body>

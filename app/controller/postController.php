@@ -27,6 +27,10 @@ class PostController {
 			$this->deletePost();
 			break;
 
+			case 'feeds':
+			$this->feeds();
+			break;
+
 				//detail view of a post
 			case 'post':
 			$postID = $_GET['postID'];
@@ -52,6 +56,14 @@ class PostController {
 			break;
 		}
 
+	}
+
+	public function feeds(){
+		$posts = BlogPost::getAllPosts();
+		// get all events
+		$events = Event::getAllEvents();
+		include_once SYSTEM_PATH.'/view/helpers.php';
+		include_once SYSTEM_PATH.'/view/feeds.tpl';
 	}
 
 	public function posts() {
@@ -158,7 +170,7 @@ class PostController {
 				$_SESSION['vizError'] = "New blog post title saved successfully.";
 			}
 		}
-		header('Location: '.BASE_URL.'/photos'); // send us back
+		header('Location: '.BASE_URL.'/visualization'); // send us back
 	}
 	public function deletePost(){
 		$postID = $_POST['postID'];
@@ -192,7 +204,7 @@ class PostController {
 				$_SESSION['vizError'] = "Blog post deleted successfully.";
 			}
 		}
-		header('Location: '.BASE_URL.'/photos');
+		header('Location: '.BASE_URL.'/visualization');
 	}
 
 }

@@ -4,17 +4,7 @@ body{
     box-sizing: border-box;
     overflow: hidden;
 }
-.header{
-    
-   
-}
-#map {
-    position: absolute;
-    right: 0;
-    height:85vh;
-    width: 65%;
-    bottom: 0;
-}
+
 
 .loginForm label{
     
@@ -33,21 +23,24 @@ body{
 }
 
 
-.contents {
-    padding-top: 7%;
-    left: 25%;
-    bottom: 0;
-    height:85vh;
-    width: 57%;
-    overflow: auto;
-    float: right;
-   
-}
-div#feed {
-    float: left;
+
+div#feeds {
+    position: absolute;
+    left:25%;
+    bottom:0;
+    width: 100%;
+    height: 85vh;
     display: block;
     text-align: left;
     padding-top: 7%;
+    overflow: auto;
+}
+
+
+h3{
+    position: absolute;
+    left: 20%;
+    margin-top: 15vh;
 }
 
 .posts .post{

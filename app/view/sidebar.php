@@ -1,34 +1,60 @@
 <span id="error">
     <?php
     if(isset($_SESSION['error'])) {
-        if($_SESSION['error'] != '') {
-                echo $_SESSION['error'];
-                $_SESSION['error'] = '';
-            }
+        $error = $_SESSION['error'];
+        
+        if($error != ''){
+            echo '<script language="javascript">';
+            echo 'alert("'.$error.'")';
+            echo '</script>';
+            $_SESSION['error'] = '';
         }
+    }
     ?>
 </span>
 <?php
-    if( !isset($_SESSION['username']) || $_SESSION['username'] == '') {
-?>
-<!-- when not logged in -->
-<form class ="loginForm" method="POST" action="<?= BASE_URL ?>/login">
+if( !isset($_SESSION['username']) || $_SESSION['username'] == '') {
+    ?>
+    <!-- when not logged in -->
+<!-- <form class="navbar-form pull-right">
+-->
+<!-- loginForm -->
+<form class ="navbar-form pull-right" method="POST" action="<?= BASE_URL ?>/login">
     <!--<a name="pageName" >-->
-    <label>Username: <input type="text" name="uname"></label>
-    <label>Password: <input type="password" name="pw"></label>
-    <input type="submit" name="submit" value="Log in">
+    <div class ="input-group">
+        <input type="text" name="uname" class = "form-control" placeholder="Username">
+    </div>
+    <div class ="input-group">
+       <input type="password" name="pw" class = "form-control" placeholder="Password">
+   </div>
+   
+   <input type="submit" name="submit" class="btn btn-primary" value="Log in">
 </form>
 
 <?php
-    } else {
-        $username = $_SESSION['username'];
-        echo '
-            <br><p>Logged in as <a href="'.BASE_URL.'/users/'.$username.'">
-            <strong>'. $username .'</strong></a>
-            <br> <a href="'.BASE_URL.'/users/'.$username.'">Home</a> 
-            <br> <a href="'.BASE_URL.'/upload">Upload</a> 
-            <br> <a href="'.BASE_URL.'/settings">Settings</a> 
-            <br> <a href="'.BASE_URL.'/logout">Log out?</a></p>
-        ';
-    }
+} else {
+    $username = $_SESSION['username'];
+    
+
+    echo '
+
+    <ul class="nav navbar-nav navbar-right">
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Logged In <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+              <li><a href="'.BASE_URL.'/users/'.$username.'">
+               <strong>Logged in as '. $username .'</strong></li>
+
+               <li><a href="'.BASE_URL.'/upload">Upload</a> </li>
+               <li><a href="'.BASE_URL.'/settings">Settings</a> </li>
+               <li role="separator" class="divider"></li>
+               <li><a href="'.BASE_URL.'/logout">Log out?</a></li>
+           </ul>
+       </li>
+   </ul>
+   ';
+
+
+}
 ?>

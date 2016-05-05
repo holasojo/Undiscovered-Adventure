@@ -1,0 +1,110 @@
+body{
+	padding-top: 100px;
+	padding-left: 50px;
+}
+
+.navbar-default {
+  background-color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+.navbar-header{
+	width: 300px !important;
+	height: inherit !important;
+	
+}
+
+.navbar-brand{
+font-size: 30px !important;
+font-family: 'Swistblnk';}
+
+@media (max-width: 1000px) {
+    .pull-right{
+        display: inline-block;
+        float: left !important;
+    }
+    .navbar .nav > li > a {
+  /*  line-height: 3vh;*/
+    padding-top: 10px;
+    padding-bottom: 10px;
+   /* height: 6vh;*/}
+    .navbar-brand{
+ 
+align-content: center;}
+    .navbar-header{
+    	width: 100%!important;
+    }
+    body{
+    		padding-top: 130px;
+    }
+}
+
+
+
+@media (max-width: 768px) {
+  
+    .navbar .nav > li > a {
+    line-height: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 50px;}
+    .navbar-brand{
+    	float:left !important;
+
+    
+align-content: center;}
+    .navbar-header{
+    	width: 100%!important;
+    }
+    body{
+    		padding-top: 50px;
+    }
+}
+
+/*
+
+.loginForm label{
+    font-size:15px;
+    font-family: 'Modernist';
+    display: inline;
+   
+}
+#login{
+    position: absolute;
+    right:0;
+    display: inline;
+    width:15%;
+    top:-20px;
+
+}
+*/
+
+
+#footer{
+ 
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 10px !important;
+  /*background-color: #f5f5f5;*/
+  background-color:rgba(0,0,0,0) !important;  
+  float: right;
+  position: absolute;
+}
+#footers > a{
+    margin-left: 20px;
+    font-size:12px;
+}
+ 
+
+
+
+@font-face {
+    font-family: 'Swistblnk';
+    src: url('../font/Swistblnk Duwhoers Brush.ttf');
+}
+
+@font-face {
+    font-family: 'Modernist';
+    src: url('../font/Sk-Modernist-Regular.otf');
+}

@@ -5,10 +5,10 @@
 	<meta charset="utf-8">
 	<title>Undiscovered Adventure</title>
 	<link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/navbar.css">
-   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+ <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
-   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+ <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 </script>
 
@@ -32,8 +32,8 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="<?= BASE_URL ?>/feeds">Activity Feeds</a></li>
-					<li class="active" ><a href="<?= BASE_URL ?>/posts">Posts <span class="sr-only">(current)</span></a></li>
+					<li class="active" ><a href="<?= BASE_URL ?>/feeds">Activity Feeds<span class="sr-only">(current)</span></a></li>
+					<li><a href="<?= BASE_URL ?>/posts">Posts </a></li>
 					<li><a href="<?= BASE_URL ?>/mapPage">Map</a></li>
 					
 					<li><a href="<?= BASE_URL ?>/visualization">Visualization</a></li>
@@ -59,66 +59,32 @@
 
 </div>
 
-<!-- 
-    <div id="feedcontent">
-    	<h3>Activity Feed</h3>
-    	<div id="feeds">
-    		<?php
 
-    		if(count($events) > 0) {
-    		echo '<ul>';
-
-    		foreach($events as $e) {
-    		echo '<li>'.formatEvent($e).'</li>';
-    	}
-
-    	echo '</ul>';
-    }
-
-    ?> -->
     <div class="container">
 
     	<!-- getting posts from the database and display as list view using a loop -->
     	<div class="row">
     		<div class ="col-lg-12">
-    			<!-- <ul class ='posts'> -->
-    			<?php
-    			foreach($posts as $post) {
-    			$author_id = $post->get('author_id');
-    			$author = AppUser::loadById($author_id);
-    			$author_name = $author->get('user_name');
-    			$postID = $post->get('id'); 
-    			$postTitle = $post->get('title');
-    			$postContent = $post->get('content');
-    			$stringCut = $postContent;
-    			if(strlen($postContent)>200){
-    			$stringCut = substr($postContent, 0, 300);
-    		}
+         <div id="feedcontent">
+          <h3>Activity Feed</h3>
+          <div id="feeds">
+            <?php
 
+            if(count($events) > 0) {
+            echo '<ul>';
 
-    		echo '
+            foreach($events as $e) {
+            echo '<li>'.formatEvent($e).'</li>';
+          }
 
+          echo '</ul>';
+        }
 
-    		<div class="col-lg-12">
-    			<h1 class ="title"> <a href="'.BASE_URL.'/posts/'.$postID.'">Title: '.$postTitle.'</a></h1> 
-    			<h3 class= "author"> <a href="'.BASE_URL.'/users/'.$author_name.'">By: '.$author_name.'</a></h3>
-    		</div>
-
-    		<div class = "col-lg-12">
-    			<div class = "content">'.$stringCut.'...<a href="'.BASE_URL.'/posts/'.$postID.'">Read More</a></div>
-    		</div>
-    		
-    		';
-
-
-
-    	}
-    	?>
-    	<!-- </ul> -->
+        ?> 
+        </div>
     </div>
-</div>
 
-</div>
+  </div>
 </div>
 </div>
 
@@ -133,7 +99,7 @@
   <li><a href="#">Contact</a></li>
         
       </ul>
-  </nav> -->
+    </nav> -->
 
   <!-- <div class="navbar navbar-default navbar-fixed-bottom" role="navigation" id="footer">
   

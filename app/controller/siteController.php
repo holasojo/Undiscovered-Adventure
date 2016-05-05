@@ -20,8 +20,8 @@ class SiteController {
 			break;
 
 			//photos view. 
-			case 'photos':
-			$this->photos();
+			case 'visualization':
+			$this->visualization();
 			break;
 
 			case 'visualJson':
@@ -51,6 +51,8 @@ class SiteController {
 			case 'upload':
 			$this->upload();
 			break;
+
+		
 
 			case 'profile':
 			$username = $_GET['username'];
@@ -96,6 +98,8 @@ class SiteController {
 				break;
 		}
 	}
+
+	
 
 
 	public function index() {
@@ -177,11 +181,11 @@ class SiteController {
 	}
 
 
-	public function photos() {
+	public function visualization() {
 		$posts = BlogPost::getAllPosts();
 		$pageTitle = 'Photos Page!';
 		$pageContent = 'Welcome. Under the construction....';
-		include_once SYSTEM_PATH.'/view/photos.tpl';
+		include_once SYSTEM_PATH.'/view/visualization.tpl';
 	}
 
 	public function visualJson() {
@@ -255,7 +259,7 @@ class SiteController {
 		));
 		$logEvent->save(); // log the event
 		//redirects to posts page to see it.
-		header('Location: '.BASE_URL.'/photos');
+		header('Location: '.BASE_URL.'/visualization');
 
 	}
 
@@ -277,10 +281,10 @@ class SiteController {
 			$_SESSION['user_id'] = $user->getId();
 			$_SESSION['username'] = $username;
 			$_SESSION['usergroup'] = $user->get('usergroup');
-			$_SESSION['error'] = "You are logged in as ".$username.".";
-			header('Location: '.BASE_URL.'/posts');
+			// $_SESSION['error'] = "You are logged in as ".$username.".";
+			
 		}
-
+		header('Location: ' . $_SERVER['HTTP_REFERER']);
 
 		// redirect to profile page
 		//header('Location: '.BASE_URL.'/profile/'.$username.'');
@@ -292,7 +296,7 @@ class SiteController {
 				session_destroy(); // for good measure
 
 				// redirect to home page
-				header('Location: '.BASE_URL.'/posts');
+		header('Location: ' . $_SERVER['HTTP_REFERER']);
 	} 
 	public function registerSubmit() {
 			// get post data

@@ -4,15 +4,20 @@
 <head>
   <meta charset="utf-8">
   <title>Undiscovered Adventure</title>
-  <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/browse.css">
-  <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/header.css">
-  <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/footer.css">
+  
+
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABQlT55ZLiU7jOIhZAAU6EFhp4v219z7s&libraries=places"></script>
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   <script src="<?= BASE_URL ?>/public/js/uploadLocation.js"></script>
   <script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>
   <script type="text/javascript" src="<?= BASE_URL ?>/public/js/visual.js"></script>
+  <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/navbar.css">
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript">
     $(document).ready(function(){
@@ -48,60 +53,45 @@
 </head>
 
 <body>
-  <div class="wrapper">
-    <div class="header">
-      <div class="header_content">
-        <h1> Undiscovered Adventure </h1>
-        <ul class="navbar">
-          <li><a href="<?= BASE_URL ?>/browse">Browse</a></li>
-          <li><a href="<?= BASE_URL ?>/posts">Posts</a></li>
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Undiscovered Adventure</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="<?= BASE_URL ?>/feeds">Activity Feeds</a></li>
+          <li><a href="<?= BASE_URL ?>/posts">Posts </a></li>
           <li><a href="<?= BASE_URL ?>/mapPage">Map</a></li>
-          <li><a href="<?= BASE_URL ?>/visualization">Photos</a></li>
-          <li>
-            <form class="search">
-              <input type="text" id="search_bar" placeholder="Seoul, Korea" required>
-              <input type="button" id="search_button" value="Let's go!">
-            </form>
-          </li>
+          
+          <li class="active" ><a href="<?= BASE_URL ?>/visualization">Visualization<span class="sr-only">(current)</span></a></li>
+
         </ul>
-        <!-- login form -->
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+
         <div id="login">
-          <span id="error">
-            <?php
-            if(isset($_SESSION['error'])) {
-            if($_SESSION['error'] != '') {
-            echo $_SESSION['error'];
-            $_SESSION['error'] = '';
-          }
-        }
-        ?>
-      </span>
+          <?php include(dirname(__DIR__).'/view/sidebar.php'); ?>
+        </div>
 
-      <?php
-      if( !isset($_SESSION['username']) || $_SESSION['username'] == '') {
-      ?>
-      <!-- when not logged in -->
-      <form class ="loginForm" method="POST" action="<?= BASE_URL ?>/login">
-        <a name="pageName" ></a>
-        <label>Username: <input type="text" name="uname"></label>
-        <label>Password: <input type="password" name="pw"></label>
-        <input type="submit" name="submit" value="Log in">
-      </form>
 
-      <?php
-    } else {
-    ?>
-    <!-- when logged in -->
-    <p>Logged in as <strong><?= $_SESSION['username'] ?></strong>. <a href="<?= BASE_URL ?>/logout">Log out?</a></p>
-    <br> <a href="<?= BASE_URL ?>/upload">Upload?</a> 
 
-    <?php
-  }
-  ?>
-</div>
-
-</div>
-</div>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
 
 <div class="contents">
 
@@ -195,13 +185,13 @@ $entry .= "['". $title ."',". $vote ."],";}
 
 
 
-<ul class="footer">
+<!-- <ul class="footer">
  <li><a href="<?= BASE_URL ?>">Index</a></li>
  <li><a href="#">About</a></li>
  <li><a href="#">Q&amp;A</a></li>
  <li><a href="#">Contact</a></li>
 
-</ul>
+</ul> -->
 
 </div>
 

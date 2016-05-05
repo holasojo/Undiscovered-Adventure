@@ -5,76 +5,60 @@
     <meta charset="utf-8">
     <title>Undiscovered Adventure</title>
     <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/mapPage.css">
-    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/header.css">
-    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/footer.css">
 
+ 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js">
     </script>
+<link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/navbar.css">
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 
-    <!-- <script src="<?= BASE_URL ?>/public/js/mapPage.js"></script>-->
-
-
-
-
-    <!--    <script src="/js/home.js"></script>-->
 </head>
 
 <body>
 
-    <div class="header">
-        <div class="header_content">
-            <h1> Undiscovered Adventure </h1>
-            <ul class="navbar">
-                <li><a href="<?= BASE_URL ?>/browse">Browse</a></li>
-                <li><a href="<?= BASE_URL ?>/posts">Posts</a></li>
-                <li><a href="<?= BASE_URL ?>/mapPage">Map</a></li>
-                <li><a href="<?= BASE_URL ?>/photos">Photos</a></li>
-                <li>
-                    <form class="search">
-                        <input type="text" id="search_bar" placeholder="Seoul, Korea" required>
-                        <input type="button" id="search_button" value="Let's go!">
-                    </form>
-                </li>
-            </ul>
-            <!-- login form -->
-            <div id="login">
-                <span id="error">
-                    <?php
-                    if(isset($_SESSION['error'])) {
-                    if($_SESSION['error'] != '') {
-                    echo $_SESSION['error'];
-                    $_SESSION['error'] = '';
-                }
-            }
-            ?>
-        </span>
+   <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Undiscovered Adventure</a>
+            </div>
 
-        <?php
-        if( !isset($_SESSION['username']) || $_SESSION['username'] == '') {
-        ?>
-        <!-- when not logged in, user can input username and pw -->
-        <form class ="loginForm" method="POST" action="<?= BASE_URL ?>/login">
-            <a name="pageName" >
-                <label>Username: <input type="text" name="uname"></label>
-                <label>Password: <input type="password" name="pw"></label>
-                <input type="submit" name="submit" value="Log in">
-            </form>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="<?= BASE_URL ?>/feeds">Activity Feeds<span class="sr-only">(current)</span></a></li>
+                    <li><a href="<?= BASE_URL ?>/posts">Posts </a></li>
+                    <li class="active" ><a href="<?= BASE_URL ?>/mapPage">Map<span class="sr-only">(current)</span></a></li>
+                    
+                    <li><a href="<?= BASE_URL ?>/visualization">Visualization</a></li>
 
-            <?php
-        } else {
-        ?>
-        <!-- when logged in -->
-        <p>Logged in as <strong><?= $_SESSION['username'] ?></strong>. <a href="<?= BASE_URL ?>/logout">Log out?</a></p>
-        <br> <a href="<?= BASE_URL ?>/upload">Upload?</a> 
+                </ul>
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+
+                <div id="login">
+                    <?php include(dirname(__DIR__).'/view/sidebar.php'); ?>
+                </div>
 
 
-        <?php
-    }
-    ?>
-</div>
-</div>
-</div>
+
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
 
 <div class="contents">
 <!-- creating multiple posts in the left side of the screen -->
@@ -162,14 +146,14 @@
 
 <!-- footer -->
 
-<ul class="footer">
+<!-- <ul class="footer">
  <li><a href="<?= BASE_URL ?>">Index</a></li>
  <li><a href="#">About</a></li>
  <li><a href="#">Q&amp;A</a></li>
  <li><a href="#">Contact</a></li>
 
 </ul>
-
+ -->
 
 </body>
 
