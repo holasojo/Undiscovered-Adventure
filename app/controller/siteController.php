@@ -296,7 +296,7 @@ class SiteController {
 				session_destroy(); // for good measure
 
 				// redirect to home page
-		header('Location: ' . $_SERVER['HTTP_REFERER']);
+		header('Location: '.BASE_URL.'/feeds');
 	} 
 	public function registerSubmit() {
 			// get post data
