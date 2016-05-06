@@ -4,23 +4,24 @@
 <head>
   <meta charset="utf-8">
   <title>Undiscovered Adventure</title>
+  <!-- css -->
+  <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/footer.css">
+  <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/navbar.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
-
+  <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/upload.css">
+  <!-- javascript -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <script src="<?= BASE_URL ?>/public/js/index.js"></script>
   <script src="<?= BASE_URL ?>/public/js/ajax.js"></script>
-    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/footer.css">
-  <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/navbar.css">
+
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
 
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
 
-  <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/upload.css">
 
 
-
-  <!--    <script src="/js/home.js"></script>-->
 </head>
 
 <body>
@@ -55,8 +56,8 @@
 
 
 
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+    </div>
+  </div>
 </nav>
 
 <div class="container center_div">
@@ -96,27 +97,27 @@ echo "Like this post? Log in to like this post!";
 <?php if(isset($_SESSION['username']) && ($_SESSION['user_id'] == $post->get('author_id') || ($_SESSION['usergroup']) == 5)) { ?>
 
 
-  <div class="form-group">
+<div class="form-group">
 
-<form name="editForm" id="editform" method="POST" action="<?= BASE_URL ?>/posts/<?= $post->get('id') ?>/edit">
+  <form name="editForm" id="editform" method="POST" action="<?= BASE_URL ?>/posts/<?= $post->get('id') ?>/edit">
     <!-- submit after done editing -->
     <input type="submit"  class="btn btn-primary" name="editButton" value="Edit">
-</form>
+  </form>
 
 
-  </div>
-  <!-- when trying to delete -->
-  <div class="form-group">
+</div>
+<!-- when trying to delete -->
+<div class="form-group">
 
-    <form name="deleteForm" id="deleteform" method="POST" action="<?= BASE_URL ?>/posts/<?= $postID ?>/delete" onsubmit="return confirm('Are you sure you want to delete?');">
+  <form name="deleteForm" id="deleteform" method="POST" action="<?= BASE_URL ?>/posts/<?= $postID ?>/delete" onsubmit="return confirm('Are you sure you want to delete?');">
 
    <input type="submit"  class="btn btn-primary" name="deleteButton" value="Delete">
 
-</form>
+ </form>
 </div>
 
-   </form>
- </div>
+</form>
+</div>
 <?php
 }
 ?>
@@ -124,21 +125,22 @@ echo "Like this post? Log in to like this post!";
 
 </div>
 
+<!-- footer -->
 
 
 <footer>
-<div class="navbar navbar-default navbar-fixed-bottom">
+  <div class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">
-          <div class="col-lg-4"></div>
-                <div class="col-lg-4">
-      <div class="navbar-collapse collapse" id="footer-body">
-        <ul class="nav navbar-nav">
-          <li><a href="<?= BASE_URL ?>">Index</a></li>
-          <li>  <a href="<?= BASE_URL ?>/about">About</a></li>
-          <li>  <a href="<?= BASE_URL ?>/contact">Contact</a></li>
-        </ul>
+      <div class="col-lg-4"></div>
+      <div class="col-lg-4">
+        <div class="navbar-collapse collapse" id="footer-body">
+          <ul class="nav navbar-nav">
+            <li><a href="<?= BASE_URL ?>">Index</a></li>
+            <li>  <a href="<?= BASE_URL ?>/about">About</a></li>
+            <li>  <a href="<?= BASE_URL ?>/contact">Contact</a></li>
+          </ul>
+        </div>
       </div>
-    </div>
       <div class="col-lg-4"></div>
     </div>
   </div>

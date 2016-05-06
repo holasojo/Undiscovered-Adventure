@@ -4,10 +4,12 @@
 <head>
 	<meta charset="utf-8">
 	<title>Undiscovered Adventure</title>
+    <!-- css -->
 	<link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/navbar.css">   
  <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/footer.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <!-- javascript -->
  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
@@ -47,8 +49,8 @@
 
 
 
-			</div><!-- /.navbar-collapse -->
-		</div><!-- /.container-fluid -->
+			</div>
+		</div>
 	</nav>
 
 
@@ -72,11 +74,12 @@
     			$stringCut = substr($postContent, 0, 300);
     		}
 
-
+            //shows title and content.
     		echo '
 
 
     		<div class="col-lg-12">
+    
     			<h1 class ="title"> <a href="'.BASE_URL.'/posts/'.$postID.'">Title: '.$postTitle.'</a></h1> 
     			<h3 class= "author"> <a href="'.BASE_URL.'/users/'.$author_name.'">By: '.$author_name.'</a></h3>
     		</div>
@@ -86,8 +89,6 @@
     		</div>
     		
     		';
-
-
 
     	}
     	?>
@@ -100,7 +101,7 @@
 
 
 
-
+<!-- footer -->
 
 <footer>
 <div class="navbar navbar-default navbar-fixed-bottom">

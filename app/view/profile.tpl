@@ -4,18 +4,25 @@
 <head>
   <meta charset="utf-8">
   <title>Undiscovered Adventure</title>
-  
-  <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/navbar.css">
-      <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/footer.css">
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+ <!-- css -->
+  <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/footer.css">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+  <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/navbar.css">
 
   <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/upload.css">
-
+  <!-- script -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js">
   </script>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js">
+  </script>
+  <script src="<?= BASE_URL ?>/public/js/follow.js"></script>
+
+
   
   <script type="text/javascript">
 
@@ -45,7 +52,7 @@
     .fail(function(){
       alert("Ajax error: could not reach server.");
     });
-location.reload();
+    location.reload();
   });
 
   // event handler for clicking "Follow" button by username
@@ -74,22 +81,18 @@ location.reload();
     .fail(function(){
       alert("Ajax error: could not reach server.");
     });
-location.reload();
+    location.reload();
   });
 
 });
 
 </script>
 
-
-
-
-
-<!--    <script src="/js/home.js"></script>-->
 </head>
 
 <body>
 
+<!-- navbar -->
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -120,13 +123,16 @@ location.reload();
 
 
 
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+      </div>
+    </div>
   </nav>
+
+  <!-- actual profile page -->
   <div id="container center_div">
     <div class ="row">
+    <!-- feeds related to the user on profile. left half of screen-->
       <div id="feed">
-      <div class="col-lg-6">
+        <div class="col-lg-6">
           <h3>Activity Feed</h3>
           <?php
 
@@ -144,22 +150,24 @@ location.reload();
     </div>
   </div>
 
+<!-- the right half of page -->
+<!-- follow. Follows and unfollow if already followed. -->
   <div class="col-lg-6">
     <?php
 
     // first and foremost, is user logged in?
     if(isset($_SESSION['username'])) {
-      // don't allow users to follow themselves
-      if($user->get('user_name') != $_SESSION['username']) {
-        // is user already followed?
-        $currentUser = AppUser::loadByUsername($_SESSION['username']);
-        if(!$currentUser->isFollowing($user->get('id'))) {
-          echo ' <button class="followUser" data-user-id="'.$user->get('id').'">Follow</button>';
-        } else {
-          echo ' <button class="unfollow" data-user-id="'.$user->get('id').'">Unfollow</button>';
-        }
-      }
-    }
+    // don't allow users to follow themselves
+    if($user->get('user_name') != $_SESSION['username']) {
+    // is user already followed?
+    $currentUser = AppUser::loadByUsername($_SESSION['username']);
+    if(!$currentUser->isFollowing($user->get('id'))) {
+    echo ' <button class="followUser" data-user-id="'.$user->get('id').'">Follow</button>';
+  } else {
+  echo ' <button class="unfollow" data-user-id="'.$user->get('id').'">Unfollow</button>';
+}
+}
+}
 
 ?>
 <!-- getting posts from the database and display as list view using a loop -->
@@ -172,13 +180,14 @@ location.reload();
 }
 $my_page = FALSE;
 if (isset($_SESSION['username'])) {
-  if ($_SESSION['username'] == $user->get('user_name')) {
-    $my_page = TRUE;
-  }
+if ($_SESSION['username'] == $user->get('user_name')) {
+$my_page = TRUE;
+}
 } 
 
 
 echo '
+
 
 <h4>
   Username: '.$user->get('user_name').'
@@ -202,6 +211,8 @@ echo '
 ';?>
 <?php
 if ($my_page) { ?>
+
+<!-- go to editProfile if clicked -->
 <form name="editForm" id="editform" method="POST" action="<?= BASE_URL ?>/users/<?= $username ?>/editProfile">
   <!-- submit after done editing -->
   <input type="submit" class="Buttons" name ="editButton" value="Edit">
@@ -212,19 +223,21 @@ if ($my_page) { ?>
 
 </div>
 </div>
+
+<!-- footer -->
 <footer>
-<div class="navbar navbar-default navbar-fixed-bottom">
+  <div class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">
-          <div class="col-lg-4"></div>
-                <div class="col-lg-4">
-      <div class="navbar-collapse collapse" id="footer-body">
-        <ul class="nav navbar-nav">
-          <li><a href="<?= BASE_URL ?>">Index</a></li>
-          <li>  <a href="<?= BASE_URL ?>/about">About</a></li>
-          <li>  <a href="<?= BASE_URL ?>/contact">Contact</a></li>
-        </ul>
+      <div class="col-lg-4"></div>
+      <div class="col-lg-4">
+        <div class="navbar-collapse collapse" id="footer-body">
+          <ul class="nav navbar-nav">
+            <li><a href="<?= BASE_URL ?>">Index</a></li>
+            <li>  <a href="<?= BASE_URL ?>/about">About</a></li>
+            <li>  <a href="<?= BASE_URL ?>/contact">Contact</a></li>
+          </ul>
+        </div>
       </div>
-    </div>
       <div class="col-lg-4"></div>
     </div>
   </div>

@@ -4,22 +4,24 @@
 <head>
   <meta charset="utf-8">
   <title>Undiscovered Adventure</title>
+  <!-- css links -->
+  <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/footer.css">
+  <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/navbar.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/upload.css">
 
+  <!-- javascript -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js">
   </script>
-      <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/footer.css">
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABQlT55ZLiU7jOIhZAAU6EFhp4v219z7s&libraries=places">
   </script>
-
   <script src="<?= BASE_URL ?>/public/js/uploadLocation.js">
   </script>
-  <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/navbar.css">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
 
-  <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/upload.css">
+
 
 
 </head>
@@ -55,32 +57,36 @@
 
 
 
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+    </div>
+  </div>
 </nav>
+<!-- form for uploading -->
 <div class="container center_div">
   <h2>Share your experience!</h2>
- <form class = "submitPost"  method="POST" action="<?= BASE_URL ?>/create" onsubmit="return confirm('Are you sure you want to submit?');">
+  <!-- actual form -->
+  <form class = "submitPost"  method="POST" action="<?= BASE_URL ?>/create" onsubmit="return confirm('Are you sure you want to submit?');">
+    <!-- title  -->
     <fieldset class="form-group">
       <label for="title_box">Title</label>
       <input type="text" class="form-control" name= "title" id="title_box" placeholder="What's your title for the post?">
-    
+
     </fieldset>
+    <!-- location -->
     <fieldset class="form-group">
       <label for="location">Location</label>
       <input type="text" class="form-control" id="location" placeholder="Where did you go?">
       <input type="hidden" id="city2" name="city2" />
-    <input type="hidden" id="cityLat" name="cityLat" />
-    <input type="hidden" id="cityLng" name="cityLng" />  
+      <input type="hidden" id="cityLat" name="cityLat" />
+      <input type="hidden" id="cityLng" name="cityLng" />  
     </fieldset>
 
-
+    <!-- body content -->
     <fieldset class="form-group">
       <label for="content-box">Tell us more!</label>
       <textarea class="form-control" name="content" id="content_box" rows="5"></textarea>
     </fieldset>
 
-
+    <!-- button for sumbmit -->
     <button type="submit" class="btn btn-primary" name="submitButton">Submit</button>
   </form>
 
@@ -88,21 +94,22 @@
 
 </div>
 
- 
+
+<!-- footer -->
 
 <footer>
-<div class="navbar navbar-default navbar-fixed-bottom">
+  <div class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">
-          <div class="col-lg-4"></div>
-                <div class="col-lg-4">
-      <div class="navbar-collapse collapse" id="footer-body">
-        <ul class="nav navbar-nav">
-          <li><a href="<?= BASE_URL ?>">Index</a></li>
-          <li>  <a href="<?= BASE_URL ?>/about">About</a></li>
-          <li>  <a href="<?= BASE_URL ?>/contact">Contact</a></li>
-        </ul>
+      <div class="col-lg-4"></div>
+      <div class="col-lg-4">
+        <div class="navbar-collapse collapse" id="footer-body">
+          <ul class="nav navbar-nav">
+            <li><a href="<?= BASE_URL ?>">Index</a></li>
+            <li>  <a href="<?= BASE_URL ?>/about">About</a></li>
+            <li>  <a href="<?= BASE_URL ?>/contact">Contact</a></li>
+          </ul>
+        </div>
       </div>
-    </div>
       <div class="col-lg-4"></div>
     </div>
   </div>
