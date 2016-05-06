@@ -45,17 +45,25 @@
         <!-- email -->
         <div>
             <label class="email-label" for="email">Email</label>
-            <input type="email" id="email" name="email" >
+            <input type="email" id="email" name="email" required>
         </div>
         <!-- pw -->
         <div>
             <label class="pw-label" for="user_pw">Password</label>
-            <input type="password" id="user_pw" name="passwd">
+            <input type="password" id="user_pw" name="passwd" required>
         </div>
         <!-- username -->
         <div>
             <label class="id-label" for="user_ID">Username</label>
-            <input type="text" id="user_ID" name="uname" >
+            <input type="text" id="user_ID" name="uname" required>
+        </div>
+        <div>
+            <label class="first-label" for="firstname">First name</label>
+            <input type="text" id="firstname" name="firstname" required>
+        </div>
+        <div>
+            <label class="last-label" for="lastname">Last name</label>
+            <input type="text" id="lastname" name="lastname" required>
         </div>
 		
 		<!-- admin code -->
@@ -64,6 +72,12 @@
             <input type="text" id="admin_ID" name="adminid" >
         </div>
 
+<div>
+    <p> Please choose your gender</p>
+  <input type="radio" name="gender" value="male" checked> Male
+  <input type="radio" name="gender" value="female"> Female
+  <input type="radio" name="gender" value="other"> Other
+</div>
 
         <div>
 

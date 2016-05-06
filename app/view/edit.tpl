@@ -38,7 +38,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Undiscovered Adventure</a>
+                <a class="navbar-brand" href="<?= BASE_URL ?>/">Undiscovered Adventure</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -46,7 +46,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="<?= BASE_URL ?>/feeds">Activity Feeds<span class="sr-only">(current)</span></a></li>
                     <li><a href="<?= BASE_URL ?>/posts">Posts </a></li>
-                    <li class="active" ><a href="<?= BASE_URL ?>/mapPage">Map<span class="sr-only">(current)</span></a></li>
+                    <li><a href="<?= BASE_URL ?>/mapPage">Map</a></li>
                     
                     <li><a href="<?= BASE_URL ?>/visualization">Visualization</a></li>
 
