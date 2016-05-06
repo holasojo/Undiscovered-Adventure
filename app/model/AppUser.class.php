@@ -8,10 +8,10 @@ class AppUser extends DbObject {
     protected $id;
     protected $user_name;
     protected $pw;
-    //protected $first_name;
-    //protected $last_name;
+    protected $firstname;
+    protected $lastname;
     protected $email;
-	
+	protected $gender;
 	protected $usergroup;
 
     // constructor
@@ -21,7 +21,10 @@ class AppUser extends DbObject {
             'user_name' => '',
             'pw' => '',
             'email' => null,
-            'usergroup' => null
+            'usergroup' => null,
+            'firstname'=>'',
+            'lastname'=>'',
+            'gender' =>''
             );
 
         $args += $defaultArgs;
@@ -31,8 +34,9 @@ class AppUser extends DbObject {
         $this->pw = $args['pw'];
         $this->email = $args['email'];
 		$this->usergroup = $args['usergroup'];
-        //$this->first_name = $args['first_name'];
-        //$this->last_name = $args['last_name'];
+        $this->firstname = $args['firstname'];
+        $this->lastname = $args['lastname'];
+        $this->gender = $args['gender'];
     }
 
     // save changes to object
@@ -43,9 +47,10 @@ class AppUser extends DbObject {
             'user_name' => $this->user_name,
             'pw' => $this->pw,
             'email' => $this->email,
-			'usergroup' => $this->usergroup
-            //'first_name' => $this->first_name,
-            //'last_name' => $this->last_name
+			'usergroup' => $this->usergroup,
+            'firstname'  => $this->firstname,
+            'lastname' => $this->lastname,
+            'gender' => $this ->gender
             );
         $db->store($this, __CLASS__, self::DB_TABLE, $db_properties);
     }

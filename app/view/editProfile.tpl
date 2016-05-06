@@ -21,11 +21,6 @@
   <script src="<?= BASE_URL ?>/public/js/follow.js"></script>
 
 
-
-
-
-
-  <!--    <script src="/js/home.js"></script>-->
 </head>
 
 <body>
@@ -39,7 +34,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="<?= BASE_URL ?>/posts">Undiscovered Adventure</a>
+        <a class="navbar-brand" href="<?= BASE_URL ?>/">Undiscovered Adventure</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -74,54 +69,79 @@
       <?php
       $email = $user->get('email');
       $pw = $user->get('pw');
+      $lname = $user->get('lastname');
+      $fname = $user->get('firstname');
+      $gen = $user->get('gender');
       ?>  
 
       <form class = "editPost"  method="POST" action="<?= BASE_URL ?>/users/<?= $username ?>/updateProfile" onsubmit="return confirm('Are you sure you want to submit?');">
        <?php echo '
 
-  
-       </br>
-       <h3>Username: '.$username.'</h3></br>
+
+     </br>
+     <h3>Username: '.$username.'</h3></br>
 
 
 
-       <fieldset class="form-group">
-        <label for="pw_box">Password</label>
+     <fieldset class="form-group">
+      <label for="pw_box">Password</label>
 
-        <input type="password" class="form-control" name="pw_box" id="edit_pw" value="'.$pw.'" >
+      <input type="password" class="form-control" name="pw_box" id="edit_pw" value="'.$pw.'" required>
 
-      </fieldset>
-
-
-      <fieldset class="form-group">
-        <label for="email_box">Email</label>
-
-        <input type="text" class="form-control" name="email_box" id="edit_email" value="'.$email.'">
+    </fieldset>
 
 
+    <fieldset class="form-group">
+      <label for="email_box">Email</label>
 
-      </fieldset>
+      <input type="text" class="form-control" name="email_box" id="edit_email" value="'.$email.'" required>
 
 
 
+    </fieldset>
 
-      <button type="submit" class="btn btn-primary" name="submitButton">Update</button>
-    </form>
-    ';?>
+    <fieldset class="form-group">
+      <label for="fname_box">First name</label>
 
- <span class="error">
-        <?php
-        if(isset($_SESSION['updateError'])) {
-        if($_SESSION['updateError'] != '') {
-        echo $_SESSION['updateError'];
-        $_SESSION['updateError'] = '';
-      }
-    }
-    ?>
-  </span>
+      <input type="text" class="form-control" name="fname_box" id="edit_fname" value="'.$fname.'" required>
 
-  </div>
-  
+
+
+    </fieldset>
+
+    <fieldset class="form-group">
+      <label for="lname_box">Last name</label>
+
+      <input type="text" class="form-control" name="lname_box" id="edit_lname" value="'.$lname.'" required>
+
+
+
+    </fieldset>
+
+    <p>Please select your gender. </p>
+    <label class="radio-inline"><input type="radio" name="gender" value="male" checked>Male</label>
+    <label class="radio-inline"><input type="radio" name="gender" value ="female">Female</label>
+    <label class="radio-inline"><input type="radio" name="gender" value="other">Other</label></br></br></br>
+
+
+
+    <button type="submit" class="btn btn-primary" name="submitButton">Update</button>
+  </form>
+  ';?>
+
+  <span class="error">
+    <?php
+    if(isset($_SESSION['updateError'])) {
+    if($_SESSION['updateError'] != '') {
+    echo $_SESSION['updateError'];
+    $_SESSION['updateError'] = '';
+  }
+}
+?>
+</span>
+
+</div>
+
 <!-- 
 <ul class="footer">
  <li><a href="<?= BASE_URL ?>">Index</a></li>

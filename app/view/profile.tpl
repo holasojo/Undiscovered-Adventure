@@ -99,7 +99,7 @@ location.reload();
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="<?= BASE_URL ?>/posts">Undiscovered Adventure</a>
+        <a class="navbar-brand" href="<?= BASE_URL ?>/">Undiscovered Adventure</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -191,6 +191,16 @@ echo '
 <h4>
   Email: '.$email.'
 </h4>
+<h4>
+  First name: '.$user->get('firstname').'
+</h4>
+<h4>
+  Last name: '.$user->get('lastname').'
+</h4>
+<h4>
+  Gender: '.$user->get('gender').'
+</h4>
+
 <h4>
   Admin: '.$admin.'
 </h4>

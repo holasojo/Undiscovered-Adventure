@@ -41,10 +41,6 @@ class SiteController {
 			$this->mapPage();
 			break;
 
-			//browse page
-			case 'browse':
-			$this->browse();
-			break;
 
 			//gets called when user wants to login
 			case 'login':
@@ -76,7 +72,10 @@ class SiteController {
 			$username = $_GET['username'];
 			$new_password = $_POST['pw_box'];
 			$new_email = $_POST['email_box'];
-			$this->updateProfile($username, $new_password, $new_email);
+			$new_fname = $_POST['fname_box'];
+			$new_lname = $_POST['lname_box'];
+			$new_gend=$_POST['gender'];
+			$this->updateProfile($username, $new_password, $new_email, $new_fname, $new_lname,$new_gend);
 			break;
 
 			//gets called when submitting the new post
@@ -165,11 +164,14 @@ class SiteController {
 		include_once SYSTEM_PATH.'/view/editProfile.tpl';
 	}
 
-	public function updateProfile($username, $new_pw, $email){
+	public function updateProfile($username, $new_pw, $email, $fname, $lname, $gen){
 		$user = AppUser::loadByUsername($username);
 		
 		$user->set('pw', $new_pw);
 		$user->set('email', $email);
+		$user->set('lastname',$lname);
+		$user->set('firstname',$fname);
+		$user->set('gender', $gen);
 		$user->save();
 		//redirect to the previous page
 		$_SESSION['updateError'] = '';
@@ -300,6 +302,9 @@ class SiteController {
 			$passwd = $_POST['passwd'];
 			$email  = $_POST['email'];
 			$adminID = $_POST['adminid'];
+			$fname = $_POST['firstname'];
+			$lname=$_POST['lastname'];
+			$gen=$_POST['gender'];
 
 			// do some simple form validation
 
@@ -325,6 +330,9 @@ class SiteController {
 			$user->set('user_name', $uname);
 			$user->set('pw', $passwd);
 			$user->set('email', $email);
+			$user->set('lastname', $lname);
+			$user->set('firstname', $fname);
+			$user->set('gender', $gen);
 			
 			$ordinaryUser = 1; 
 			$isadmin = 5; 
