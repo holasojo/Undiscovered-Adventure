@@ -7,6 +7,7 @@
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js">
   </script>
+      <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/footer.css">
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABQlT55ZLiU7jOIhZAAU6EFhp4v219z7s&libraries=places">
   </script>
 
@@ -93,7 +94,25 @@
 
 </div>
 
+ 
 
+<footer>
+<div class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+          <div class="col-lg-4"></div>
+                <div class="col-lg-4">
+      <div class="navbar-collapse collapse" id="footer-body">
+        <ul class="nav navbar-nav">
+          <li><a href="<?= BASE_URL ?>">Index</a></li>
+          <li>  <a href="<?= BASE_URL ?>/about">About</a></li>
+          <li>  <a href="<?= BASE_URL ?>/contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+      <div class="col-lg-4"></div>
+    </div>
+  </div>
+</footer>
 
 </body>
 

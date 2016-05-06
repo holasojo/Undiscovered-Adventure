@@ -9,7 +9,7 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <script src="<?= BASE_URL ?>/public/js/index.js"></script>
   <script src="<?= BASE_URL ?>/public/js/ajax.js"></script>
-
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/footer.css">
   <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/navbar.css">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -125,15 +125,25 @@ echo "Like this post? Log in to like this post!";
 
 </div>
 
-<!-- 
-<ul class="footer">
-   <li><a href="<?= BASE_URL ?>">Index</a></li>
-  <li><a href="#">About</a></li>
-  <li><a href="#">Q&amp;A</a></li>
-  <li><a href="#">Contact</a></li>
 
-</ul> -->
 
+<footer>
+<div class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+          <div class="col-lg-4"></div>
+                <div class="col-lg-4">
+      <div class="navbar-collapse collapse" id="footer-body">
+        <ul class="nav navbar-nav">
+          <li><a href="<?= BASE_URL ?>">Index</a></li>
+          <li>  <a href="<?= BASE_URL ?>/about">About</a></li>
+          <li>  <a href="<?= BASE_URL ?>/contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+      <div class="col-lg-4"></div>
+    </div>
+  </div>
+</footer>
 
 </body>
 

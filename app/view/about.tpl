@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <title>Undiscovered Adventure</title>
   <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/navbar.css">
+      <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/footer.css">
  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
@@ -67,30 +68,25 @@
 
 
 
+   
 
-   <!-- <nav class="navbar navbar-default navbar-fixed-bottom">
-<ul class="nav footer">
-        <li><a href="<?= BASE_URL ?>">Index</a></li>
-  <li><a href="#">About</a></li>
-  <li><a href="#">Q&amp;A</a></li>
-  <li><a href="#">Contact</a></li>
-        
-      </ul>
-    </nav> -->
-
-  <!-- <div class="navbar navbar-default navbar-fixed-bottom" role="navigation" id="footer">
-  
-  <div class="container" >
-    <div class="navbar-text pull-right">
-      <div id="footers">
-        <a href="<?= BASE_URL ?>">Index</a>
-        <a href="#">About</a>
-        <a href="#">Q&amp;A</a>
-        <a href="#">Contact</a>
+<<footer>
+<div class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+          <div class="col-lg-4"></div>
+                <div class="col-lg-4">
+      <div class="navbar-collapse collapse" id="footer-body">
+        <ul class="nav navbar-nav">
+          <li><a href="<?= BASE_URL ?>">Index</a></li>
+          <li>  <a href="<?= BASE_URL ?>/about">About</a></li>
+          <li>  <a href="<?= BASE_URL ?>/contact">Contact</a></li>
+        </ul>
       </div>
     </div>
+      <div class="col-lg-4"></div>
+    </div>
   </div>
-</div> -->
+</footer>
 
 </body>
 
