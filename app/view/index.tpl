@@ -23,13 +23,7 @@
     </div>
 
 
-    <ul class="footer">
-         <li><a href="<?= BASE_URL ?>">Index</a></li>
-        <li><a href="<?= BASE_URL ?>/about">About</a></li>
-        
-        <li><a href="<?= BASE_URL ?>/contact">Contact</a></li>
 
-    </ul>
 
     <a href="#" class="signUpButton">Sign Up</a>
 
@@ -83,6 +77,14 @@
         </form>
     </div>
 <iframe width="0" height="0" border="0" position="absolute" name="dummyframe" id="dummyframe"></iframe>
+
+    <ul class="footer">
+         <li><a href="<?= BASE_URL ?>">Index</a></li>
+        <li><a href="<?= BASE_URL ?>/about">About</a></li>
+        
+        <li><a href="<?= BASE_URL ?>/contact">Contact</a></li>
+
+    </ul>
 
 </body>
 
