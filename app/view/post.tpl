@@ -121,8 +121,6 @@ echo "Like this post? Log in to like this post!";
 </form>
 </div>
 
-     <input type="submit"  class="btn btn-primary" name ="deleteButton" value="Delete">
-
    </form>
  </div>
 <?php
