@@ -101,12 +101,12 @@
 <!-- edit and delete button only can be seen when logged in and it's your post or you are an admin-->
 <?php if(isset($_SESSION['username']) && ($_SESSION['user_id'] == $post->get('author_id') || ($_SESSION['usergroup']) == 5)) { ?>
 
-<form class="form-inline">
+
   <div class="form-group">
 
-<form name="editForm" id="editform" method="POST" action="<?= BASE_URL ?>/posts/<?= $postID ?>/edit">
+<form name="editForm" id="editform" method="POST" action="<?= BASE_URL ?>/posts/<?= $post->get('id') ?>/edit">
     <!-- submit after done editing -->
-    <input type="submit"  class="btn btn-primary" name ="editButton" value="Edit">
+    <input type="submit"  class="btn btn-primary" name="editButton" value="Edit">
 </form>
 
 </div>
@@ -115,11 +115,11 @@
 
 <form name="deleteForm" id="deleteform" method="POST" action="<?= BASE_URL ?>/posts/<?= $postID ?>/delete" onsubmit="return confirm('Are you sure you want to delete?');">
 
-   <input type="submit"  class="btn btn-primary" name ="deleteButton" value="Delete">
+   <input type="submit"  class="btn btn-primary" name="deleteButton" value="Delete">
 
 </form>
 </div>
-</form>
+
 <?php
 }
 ?>
