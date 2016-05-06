@@ -18,11 +18,8 @@
 
 
     <div id="forms">
-        <h1> Undiscovered Adventure </h1>
-        <input id="searchBox" type="search" placeholder="Seoul, Korea">
+        <h1> Undiscovered Adventure </h1>    
         <input id="searchButton" type="submit" value="Let's Go">
-
-        <a href="#">Anywhere!</a>
     </div>
 
 

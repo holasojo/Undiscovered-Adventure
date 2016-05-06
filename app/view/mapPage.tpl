@@ -43,12 +43,6 @@
                     <li><a href="<?= BASE_URL ?>/visualization">Visualization</a></li>
 
                 </ul>
-                <form class="navbar-form navbar-left" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                    </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </form>
 
                 <div id="login">
                     <?php include(dirname(__DIR__).'/view/sidebar.php'); ?>
