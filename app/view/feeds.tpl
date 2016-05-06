@@ -67,7 +67,7 @@
       <?php
 
       if(count($events) > 0) {
-      echo '<ul>';
+      echo '<ul class="list-unstyled">';
 
       foreach($events as $e) {
       echo '<li>'.formatEvent($e).'</li>';

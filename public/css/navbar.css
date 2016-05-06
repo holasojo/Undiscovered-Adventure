@@ -84,7 +84,9 @@ div#about {
   font-size: 15px;
 }
 
-
+div#feedcontent {
+    text-align: center;
+}
  
 .unfollow {
   background: red;
