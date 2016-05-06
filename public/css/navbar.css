@@ -93,6 +93,11 @@ div#piechart{
     height: 600px;
 }
 
+div#about {
+  text-align: center;
+  font-size: 15px;
+}
+
 #footer{
  
   bottom: 0;

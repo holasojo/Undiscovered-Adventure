@@ -28,9 +28,9 @@
 
     <ul class="footer">
          <li><a href="<?= BASE_URL ?>">Index</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Q&amp;A</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="<?= BASE_URL ?>/about">About</a></li>
+        
+        <li><a href="<?= BASE_URL ?>/contact">Contact</a></li>
 
     </ul>
 

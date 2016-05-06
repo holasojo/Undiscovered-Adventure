@@ -19,6 +19,14 @@ class SiteController {
 			$this->index();
 			break;
 
+			case 'about':
+			$this->about();
+			break;
+
+			case 'contact':
+			$this->contact();
+			break;
+
 			//photos view. 
 			case 'visualization':
 			$this->visualization();
@@ -109,6 +117,16 @@ class SiteController {
 	public function index() {
 
 		include_once SYSTEM_PATH.'/view/index.tpl';
+	}
+
+	public function about() {
+
+		include_once SYSTEM_PATH.'/view/about.tpl';
+	}
+
+	public function contact() {
+
+		include_once SYSTEM_PATH.'/view/contact.tpl';
 	}
 
 	public function mapPage() {

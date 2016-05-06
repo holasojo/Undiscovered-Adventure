@@ -6,6 +6,8 @@ RewriteEngine on
 
 # Site
 RewriteRule ^$ app/controller/siteController.php?action=index [QSA,L]
+RewriteRule ^about/?$ app/controller/siteController.php?action=about [QSA,L]
+RewriteRule ^contact/?$ app/controller/siteController.php?action=contact [QSA,L]
 RewriteRule ^mapPage/?$ app/controller/siteController.php?action=mapPage [QSA,L]
 RewriteRule ^browse/?$ app/controller/siteController.php?action=browse [QSA,L]
 RewriteRule ^logout/?$ app/controller/siteController.php?action=logout [QSA,L]
