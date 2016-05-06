@@ -56,7 +56,7 @@
 
     	<!-- getting posts from the database and display as list view using a loop -->
     	<div class="row">
-     
+            <div class="postsContent">
     	
     			<!-- <ul class ='posts'> -->
     			<?php
@@ -91,6 +91,7 @@
 
     	}
     	?>
+        </div>
     </div>
    
   </div>
