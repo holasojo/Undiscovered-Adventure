@@ -47,7 +47,7 @@ if( !isset($_SESSION['username']) || $_SESSION['username'] == '') {
                <strong>Logged in as '. $username .'</strong></li>
 
                <li><a href="'.BASE_URL.'/upload">Upload</a> </li>
-               <li><a href="'.BASE_URL.'/settings">Settings</a> </li>
+               <li><a href="'.BASE_URL.'/users/'.$username.'/editProfile">Edit Profile</a> </li>
                <li role="separator" class="divider"></li>
                <li><a href="'.BASE_URL.'/logout">Log out?</a></li>
            </ul>

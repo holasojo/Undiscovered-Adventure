@@ -15,10 +15,38 @@
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js">
   </script>
-  <script src="<?= BASE_URL ?>/public/js/follow.js"></script>
+  
   <script type="text/javascript">
 
     $(document).ready(function(){
+      $('.unfollow').click(function(){
+    // follow the current user
+
+    // get the ID of the user to be followed
+    var userID = $(this).data('user-id');
+
+    // send Ajax request to follow
+    $.post(
+      '<?= BASE_URL ?>/users/unfollow',
+      { "userID": userID } )
+    .done(function(data){
+      if(data.success == 'success') {
+          // successfully followed the user
+          // now hide the Follow button for that user
+          $('.unfollow').each(function(){
+            // if this is a Follow button for a followed user ID...
+            if($(this).data('user-id') == userID)
+              $(this).text('Follow').addClass('followUser').removeClass('unfollow'); // remove the Follow button
+          });
+        } else if(data.error != '') {
+          alert(data.error); // show error message as modal dialog box
+        } })
+    .fail(function(){
+      alert("Ajax error: could not reach server.");
+    });
+location.reload();
+  });
+
   // event handler for clicking "Follow" button by username
   $('.followUser').click(function(){
     // follow the current user
@@ -37,7 +65,7 @@
           $('.followUser').each(function(){
             // if this is a Follow button for a followed user ID...
             if($(this).data('user-id') == userID)
-              $(this).remove(); // remove the Follow button
+              $(this).text('Unfollow').addClass('unfollow').removeClass('followUser'); // remove the Follow button
           });
         } else if(data.error != '') {
           alert(data.error); // show error message as modal dialog box
@@ -45,9 +73,8 @@
     .fail(function(){
       alert("Ajax error: could not reach server.");
     });
-
+location.reload();
   });
-
 
 });
 
@@ -127,20 +154,17 @@
 
     // first and foremost, is user logged in?
     if(isset($_SESSION['username'])) {
-
-    // don't allow users to follow themselves
-    //$author = AppUser::loadById($_SESSION['user_id']);
-
-    if($user->get('user_name') != $_SESSION['username']) {
-
-    // is user already followed?
-    
-    $currentUser = AppUser::loadByUsername($_SESSION['username']);
-    if(!$currentUser->isFollowing($user->get('id'))) {
-    echo ' <button class="followUser" data-user-id="'.$user->get('id').'">Follow</button>';
-  }
-}
-}
+      // don't allow users to follow themselves
+      if($user->get('user_name') != $_SESSION['username']) {
+        // is user already followed?
+        $currentUser = AppUser::loadByUsername($_SESSION['username']);
+        if(!$currentUser->isFollowing($user->get('id'))) {
+          echo ' <button class="followUser" data-user-id="'.$user->get('id').'">Follow</button>';
+        } else {
+          echo ' <button class="unfollow" data-user-id="'.$user->get('id').'">Unfollow</button>';
+        }
+      }
+    }
 
 ?>
 <!-- getting posts from the database and display as list view using a loop -->
@@ -152,15 +176,17 @@
   $admin = "yes";
 }
 $my_page = FALSE;
-if (isset($_SESSION['username']) && $_SESSION['username'] == $username) {
-$my_page = TRUE;
-}
+if (isset($_SESSION['username'])) {
+  if ($_SESSION['username'] == $user->get('user_name')) {
+    $my_page = TRUE;
+  }
+} 
 
 
 echo '
 
 <h4>
-  Username: '.$username.'
+  Username: '.$user->get('user_name').'
 </h4>
 <h4>
   Email: '.$email.'

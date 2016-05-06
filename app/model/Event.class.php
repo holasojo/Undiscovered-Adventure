@@ -96,6 +96,33 @@ class Event extends DbObject {
       return $events;
     }
 
+    public static function getAllFollowerEvents($id) {
+      $db = Db::instance();
+
+      $q = sprintf("SELECT * FROM %s WHERE event_type_id = 4 AND user_1_id = %s ORDER BY date_created DESC ",
+        self::DB_TABLE, $id
+        );
+      $result = $db->lookup($q);
+      $events = array();
+      $check = 0;
+      while ($row = mysqli_fetch_assoc($result)) {
+        if ($check == $row['user_2_id']) {
+          continue;
+        } else {
+          $check = $row['user_2_id'];
+        }
+        $q2 = sprintf("SELECT * FROM %s WHERE user_1_id = %s ORDER BY date_created DESC ",
+        self::DB_TABLE, $row['user_2_id']
+        );
+        $result2 = $db->lookup($q2);
+        while ($row2 = mysqli_fetch_assoc($result2)) {
+          $events[] = self::loadById($row2['id']);
+        }
+      }
+
+      return $events;
+    }
+
 
 
 }

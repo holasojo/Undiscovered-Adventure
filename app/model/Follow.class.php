@@ -44,7 +44,15 @@ class Follow extends DbObject {
         $obj = $db->fetchById($id, __CLASS__, self::DB_TABLE);
         return $obj;
     }
-
+    public function unfollow($followerID=null, $followeeID=null) {
+        $db = Db::instance();
+        $q = sprintf("DELETE FROM %s WHERE follower = %d AND followee = %d ",
+        self::DB_TABLE,
+        $followerID,
+        $followeeID
+        );
+        $db->execute($q);
+    }
     // is the first user following the second user?
     public static function areFollowing($followerID=null, $followeeID=null) {
       if($followerID == null || $followeeID == null)

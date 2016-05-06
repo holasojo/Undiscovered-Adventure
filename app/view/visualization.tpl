@@ -96,6 +96,7 @@
 <div class="contents">
 
  <h2>Visualization</h2>
+ <div id="visual_and_forms">
  <span class="error">
   <?php
   if(isset($_SESSION['vizError'])) {
@@ -106,18 +107,19 @@
 }
 ?>
 </span>
-<div id="visual_and_forms">
-  <!-- shows up when the title was clicked  -->
-  <form id="editPostTitleForm" method="POST" action="<?= BASE_URL ?>/photos/editPostTitle" style="display: none;">
 
+  <!-- shows up when the title was clicked  -->
+  <div id="forms">
+  <form id="editPostTitleForm" method="POST" action="<?= BASE_URL ?>/visualization/editPostTitle" style="display: none;">
     <label>Blog Post Title: <input type="text" name="postTitle" value="" style="width: 300px;"></label>
     <input type="hidden" name="postID" value="">
-    <input type="submit" name="submit" value="Edit">
+    <input type="submit" name="submit" value="Edit" class="formButton">
   </form>
   <form id="deletePostForm" method="POST" action="<?= BASE_URL ?>/visualization/deletePost" style="display: none;">
     <input type="hidden" name="postID" value="">
-    <input type="submit" name="submit" value="Delete">
+    <input type="submit" name="submit" value="Delete" class="formButton">
   </form>
+  </div>
   <div id="viz">
 
   </div>
