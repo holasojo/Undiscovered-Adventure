@@ -6,8 +6,7 @@
     <title>Undiscovered Adventure</title>
 
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js">
-    </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="<?= BASE_URL ?>/public/js/index.js"></script>
     <script src="<?= BASE_URL ?>/public/js/ajax.js"></script>
 
@@ -19,7 +18,6 @@
 
     <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/upload.css">
 
-</script>
 
 
 <!--    <script src="/js/home.js"></script>-->
@@ -81,9 +79,15 @@
             echo $post->get('vote')." people liked this  ";
             ?> 
             <!-- like button can only be seen by user logged in -->
-            <?php if(isset($_SESSION['username'])) { ?>
+            <?php if(isset($_SESSION['username'])) {
+                if (!PostLikers::hasLiked($post->get('id'), $_SESSION['user_id'])) { 
+                  //PostLikers::like($post->get('id'), $_SESSION['user_id']);?>
             <a href="" onclick="ajaxLike(<?php echo $post->get('id') ?>)" class="likeButton">Like</a>  <?php
-        }
+            } elseif (PostLikers::hasLiked($post->get('id'), $_SESSION['user_id'])) {
+              //PostLikers::unlike($post->get('id'), $_SESSION['user_id']);?>
+              <a href="" onclick="ajaxUnlike(<?php echo $post->get('id') ?>)" class="likeButton">Unlike</a> <?php
+            }
+          }
         else{
         echo  "<br>";
         echo "Like this post? Log in to like this post!";

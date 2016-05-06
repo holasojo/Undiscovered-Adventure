@@ -73,6 +73,7 @@
     <ul id="profile_info">
       <?php
       $email = $user->get('email');
+      $pw = $user->get('pw');
       ?>  
 
       <form class = "editPost"  method="POST" action="<?= BASE_URL ?>/users/<?= $username ?>/updateProfile" onsubmit="return confirm('Are you sure you want to submit?');">
@@ -87,7 +88,7 @@
        <fieldset class="form-group">
         <label for="pw_box">Password</label>
 
-        <input type="text" class="form-control" name= "edit_pw" id="pw_box" >
+        <input type="password" class="form-control" name="pw_box" id="edit_pw" value="'.$pw.'" >
 
       </fieldset>
 
@@ -95,7 +96,7 @@
       <fieldset class="form-group">
         <label for="email_box">Email</label>
 
-        <input type="text" class="form-control" name= "edit_email" id="email_box" value="'.$email.'">
+        <input type="text" class="form-control" name="email_box" id="edit_email" value="'.$email.'">
 
 
 
