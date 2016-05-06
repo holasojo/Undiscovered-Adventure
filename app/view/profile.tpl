@@ -99,7 +99,7 @@ location.reload();
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Undiscovered Adventure</a>
+        <a class="navbar-brand" href="<?= BASE_URL ?>/posts">Undiscovered Adventure</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
