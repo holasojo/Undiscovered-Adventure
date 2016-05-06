@@ -60,7 +60,7 @@ class Event extends DbObject {
         return $obj;
     }
 
-
+    //pull all events from all users
     public static function getAllEvents($limit=null) {
       $db = Db::instance();
 
@@ -79,7 +79,7 @@ class Event extends DbObject {
 
       return $events;
     }
-
+    //pull all events for this user
     public static function getAllEventsByUserID($id) {
       $db = Db::instance();
 
@@ -95,10 +95,10 @@ class Event extends DbObject {
 
       return $events;
     }
-
+    //pull events from users that you follow
     public static function getAllFollowerEvents($id) {
       $db = Db::instance();
-
+      //get followers
       $q = sprintf("SELECT * FROM %s WHERE event_type_id = 4 AND user_1_id = %s ORDER BY date_created DESC ",
         self::DB_TABLE, $id
         );

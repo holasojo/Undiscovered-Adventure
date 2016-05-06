@@ -49,7 +49,7 @@ class FollowingUser extends DbObject {
     }
 
 
-
+    //get all users you're following
     public static function getFollowing($user_id=null) {
         $query = sprintf(" SELECT id FROM %s WHERE user_id = '%s' ",
             self::DB_TABLE, $user_id
@@ -67,7 +67,7 @@ class FollowingUser extends DbObject {
         }
     }
 
-
+    //get all users that are following you
     public static function getFollowers($user_id = null){
  $query = sprintf(" SELECT id FROM %s WHERE following_id = '%s' ",
         self::DB_TABLE, $user_id

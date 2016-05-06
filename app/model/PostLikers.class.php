@@ -20,7 +20,7 @@ class PostLikers extends DbObject {
         $this->post_id = $args['post_id'];
         $this->user_id = $args['user_id'];
     }
-
+    //likes a post on the backend
     public static function like($postID=null, $userID=null) {
         $db = Db::instance();
         $query = sprintf("INSERT INTO %s (post_id, user_id) VALUES (%s, %s)",
@@ -30,7 +30,7 @@ class PostLikers extends DbObject {
             );
         $db->execute($query);
     }
-
+    //unlikes a post on the backend
     public static function unlike($postID=null, $userID=null) {
         $db = Db::instance();
         $query = sprintf("DELETE FROM %s WHERE post_id = %d AND user_id = %d",

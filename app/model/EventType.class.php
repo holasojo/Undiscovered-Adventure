@@ -37,7 +37,7 @@ class EventType extends DbObject {
       $obj = $db->fetchById($id, __CLASS__, self::DB_TABLE);
       return $obj;
   }
-
+  //get id of event_type by name
   public static function getIdByName($name) {
     $db = Db::instance();
     $q = sprintf("SELECT * FROM %s WHERE `name` = '%s' ",

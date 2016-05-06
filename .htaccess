@@ -26,6 +26,7 @@ RewriteRule ^users/(.*)/editProfile/?$ app/controller/siteController.php?action=
 RewriteRule ^users/(.*)/?$ app/controller/siteController.php?action=profile&username=$1 [QSA,L]
 
 RewriteRule ^visualization/json/?$ app/controller/siteController.php?action=visualJson [QSA,L]
+RewriteRule ^visualization/create/?$ app/controller/siteController.php?action=vizCreate [QSA,L]
 RewriteRule ^visualization/editPostTitle/?$ app/controller/postController.php?action=editTitle [QSA,L]
 RewriteRule ^visualization/deletePost/?$ app/controller/postController.php?action=deletePost [QSA,L]
 RewriteRule ^visualization/?$ app/controller/siteController.php?action=visualization [QSA,L]

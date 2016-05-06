@@ -44,6 +44,7 @@ class Follow extends DbObject {
         $obj = $db->fetchById($id, __CLASS__, self::DB_TABLE);
         return $obj;
     }
+    //unfollows a user on backend
     public function unfollow($followerID=null, $followeeID=null) {
         $db = Db::instance();
         $q = sprintf("DELETE FROM %s WHERE follower = %d AND followee = %d ",
@@ -66,7 +67,7 @@ class Follow extends DbObject {
         );
       $result = $db->lookup($q);
       if(mysqli_num_rows($result) != 0) {
-        // follow was wound
+        // follow was found
         return true;
       } else {
         return false;

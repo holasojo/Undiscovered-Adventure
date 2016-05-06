@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2016 at 11:15 PM
+-- Generation Time: May 06, 2016 at 08:55 AM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -81,7 +81,67 @@ INSERT INTO `event` (`id`, `event_type_id`, `user_1_id`, `user_2_id`, `blog_post
 (73, 9, 1, NULL, NULL, '2016-05-05 18:10:31', 'Hello', NULL),
 (74, 3, 1, NULL, 44, '2016-05-05 18:11:38', NULL, NULL),
 (75, 10, 1, NULL, 46, '2016-05-05 18:17:32', NULL, NULL),
-(76, 1, 1, NULL, 47, '2016-05-05 18:18:19', NULL, NULL);
+(76, 1, 1, NULL, 47, '2016-05-05 18:18:19', NULL, NULL),
+(77, 4, 1, 30, NULL, '2016-05-06 01:24:30', NULL, NULL),
+(78, 5, 30, 1, NULL, '2016-05-06 01:24:30', NULL, NULL),
+(79, 4, 6, 1, NULL, '2016-05-06 01:24:52', NULL, NULL),
+(80, 5, 1, 6, NULL, '2016-05-06 01:24:52', NULL, NULL),
+(81, 4, 1, 6, NULL, '2016-05-06 01:36:09', NULL, NULL),
+(82, 5, 6, 1, NULL, '2016-05-06 01:36:09', NULL, NULL),
+(83, 4, 1, 6, NULL, '2016-05-06 01:37:14', NULL, NULL),
+(84, 5, 6, 1, NULL, '2016-05-06 01:37:14', NULL, NULL),
+(85, 3, 1, NULL, 47, '2016-05-06 01:49:10', NULL, NULL),
+(86, 1, 1, NULL, 48, '2016-05-06 01:57:09', NULL, NULL),
+(87, 4, 1, 6, NULL, '2016-05-06 02:00:59', NULL, NULL),
+(88, 5, 6, 1, NULL, '2016-05-06 02:00:59', NULL, NULL),
+(89, 4, 1, 6, NULL, '2016-05-06 02:06:32', NULL, NULL),
+(90, 5, 6, 1, NULL, '2016-05-06 02:06:32', NULL, NULL),
+(91, 4, 1, 30, NULL, '2016-05-06 03:11:06', NULL, NULL),
+(92, 5, 30, 1, NULL, '2016-05-06 03:11:06', NULL, NULL),
+(93, 4, 6, 1, NULL, '2016-05-06 03:14:34', NULL, NULL),
+(94, 5, 1, 6, NULL, '2016-05-06 03:14:34', NULL, NULL),
+(95, 4, 6, 30, NULL, '2016-05-06 03:17:39', NULL, NULL),
+(96, 5, 30, 6, NULL, '2016-05-06 03:17:39', NULL, NULL),
+(97, 6, 6, NULL, 36, '2016-05-06 03:36:04', 'My cool post', 'My cool post!'),
+(98, 6, 1, NULL, 48, '2016-05-06 03:36:30', 'Test', 'Test1'),
+(99, 4, 1, 30, NULL, '2016-05-06 05:15:51', NULL, NULL),
+(100, 5, 30, 1, NULL, '2016-05-06 05:15:51', NULL, NULL),
+(101, 4, 1, 30, NULL, '2016-05-06 05:17:36', NULL, NULL),
+(102, 5, 30, 1, NULL, '2016-05-06 05:17:36', NULL, NULL),
+(103, 3, 1, NULL, 43, '2016-05-06 05:25:26', NULL, NULL),
+(104, 3, 1, NULL, 48, '2016-05-06 05:26:01', NULL, NULL),
+(105, 3, 1, NULL, 46, '2016-05-06 05:26:05', NULL, NULL),
+(106, 3, 1, NULL, 42, '2016-05-06 05:29:18', NULL, NULL),
+(107, 2, 1, NULL, 41, '2016-05-06 05:50:47', NULL, NULL),
+(108, 2, 1, NULL, 41, '2016-05-06 05:55:48', NULL, NULL),
+(109, 2, 6, NULL, 36, '2016-05-06 06:00:34', NULL, NULL),
+(110, 3, 1, NULL, 40, '2016-05-06 06:03:45', NULL, NULL),
+(111, 3, 1, NULL, 41, '2016-05-06 06:03:49', NULL, NULL),
+(112, 3, 1, NULL, 39, '2016-05-06 06:03:54', NULL, NULL),
+(113, 2, 1, NULL, 33, '2016-05-06 06:06:28', NULL, NULL),
+(114, 1, 1, NULL, 49, '2016-05-06 06:07:47', NULL, NULL),
+(115, 3, 1, NULL, 33, '2016-05-06 06:08:38', NULL, NULL),
+(116, 3, 1, NULL, 34, '2016-05-06 06:08:43', NULL, NULL),
+(117, 3, 6, NULL, 36, '2016-05-06 06:09:13', NULL, NULL),
+(118, 3, 6, NULL, 31, '2016-05-06 06:09:18', NULL, NULL),
+(119, 1, 6, NULL, 50, '2016-05-06 06:12:24', NULL, NULL),
+(120, 3, 30, NULL, 38, '2016-05-06 06:12:45', NULL, NULL),
+(121, 1, 30, NULL, 51, '2016-05-06 06:15:15', NULL, NULL),
+(122, 3, 30, NULL, 37, '2016-05-06 06:15:21', NULL, NULL),
+(123, 10, 7, NULL, 52, '2016-05-06 06:16:35', NULL, NULL),
+(124, 2, 7, NULL, 52, '2016-05-06 06:18:55', NULL, NULL),
+(125, 3, 7, NULL, 52, '2016-05-06 06:19:07', NULL, NULL),
+(126, 10, 7, NULL, NULL, '2016-05-06 06:21:49', NULL, NULL),
+(127, 10, 7, NULL, 53, '2016-05-06 06:31:00', NULL, NULL),
+(128, 2, 7, NULL, 53, '2016-05-06 06:31:20', NULL, NULL),
+(129, 2, 7, NULL, 53, '2016-05-06 06:33:10', NULL, NULL),
+(130, 6, 1, NULL, 49, '2016-05-06 06:34:22', 'My Trip To Seoul', 'My Trip To Seoul!'),
+(131, 1, 1, NULL, 54, '2016-05-06 06:37:20', NULL, NULL),
+(132, 1, 9, NULL, 55, '2016-05-06 06:45:44', NULL, NULL),
+(133, 4, 9, 1, NULL, '2016-05-06 06:46:07', NULL, NULL),
+(134, 5, 1, 9, NULL, '2016-05-06 06:46:07', NULL, NULL),
+(135, 4, 9, 7, NULL, '2016-05-06 06:46:16', NULL, NULL),
+(136, 5, 7, 9, NULL, '2016-05-06 06:46:16', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -126,7 +186,13 @@ CREATE TABLE `follow` (
 --
 
 INSERT INTO `follow` (`id`, `follower`, `followee`, `date_created`) VALUES
-(4, 1, 9, '2016-04-08 05:33:09');
+(4, 1, 9, '2016-04-08 05:33:09'),
+(10, 1, 6, '2016-05-06 02:06:32'),
+(12, 6, 1, '2016-05-06 03:14:34'),
+(13, 6, 30, '2016-05-06 03:17:39'),
+(15, 1, 30, '2016-05-06 05:17:36'),
+(16, 9, 1, '2016-05-06 06:46:07'),
+(17, 9, 7, '2016-05-06 06:46:16');
 
 -- --------------------------------------------------------
 
@@ -150,19 +216,12 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `title`, `content`, `author_id`, `date_created`, `longitude`, `latitude`, `vote`) VALUES
-(31, 'woohoo', 'yeah', 6, '2016-04-08 08:33:13', 0, 0, 4),
-(33, 'My new post!', 'WOOHOO', 1, '2016-04-17 17:02:59', 0, 0, 0),
-(34, 'Filler', 'Posts', 1, '2016-04-17 17:03:48', 0, 0, 0),
-(36, 'My cool post', 'wefwef', 6, '2016-04-17 17:05:43', 0, 0, 0),
-(37, 'Visual', '', 30, '2016-04-18 04:05:26', 0, 0, 0),
-(38, 'Test visual create', '', 30, '2016-05-05 18:14:32', 0, 0, 5),
-(39, 'Event', 'Test', 1, '2016-04-18 04:14:08', -86.5804473, 35.5174913, 0),
-(40, 'ge', 'ge', 1, '2016-04-26 01:00:25', 0, 0, 0),
-(41, 'n', 'n', 1, '2016-04-26 01:29:56', 0, 0, 0),
-(42, 'gr', 'gr', 1, '2016-04-26 01:33:03', 0, 0, 0),
-(43, 'grg', 'gr', 1, '2016-05-05 21:04:17', -79.9414266, 37.2709704, 2),
-(46, 'hehe', 'yyy', 1, '2016-05-05 21:02:07', 6.960278600000038, 50.937531, 1),
-(47, 'hoho', 'fsdf', 1, '2016-05-05 21:08:01', -91.96233269999999, 30.9842977, 6);
+(49, 'My Trip To Seoul!', 'This is my first time visiting Asia. Korea was amazing and exceptional. Good food, good people, good atmostphere. I absolutely loved everything about the country. I would like to share my experience.. Day 1, my friend(Korean American) and I landed in Incheon. Then, we took a bus to get into the city area. The trip took about an hour or so. Thankfully, there was no traffic. ', 1, '2016-05-06 06:45:55', 126.97796919999996, 37.566535, 2),
+(50, 'Living in Tokyo', 'I lived in Tokyo, Japan for a few years. It is no doubt one of the most lively and vibrant cities in the world! Great food to eat and tons of fun activities to do. The only unfortunate part is the lingering xenophobic tendencies of the Japanese culture. Even though I can speak Japanese fluently, it feels like I will never be accepted into Japanese society and will always be seen as an outsider. ', 6, '2016-05-06 06:37:50', 139.69170639999993, 35.6894875, 1),
+(51, 'Paris!', 'Paris! What a city of pretentious, baguette eating French men! It is everything I had hoped it would be, and I feel like I fit right in, unlike in my home country of the United States of America. While America is great with its guns and all, it has got nothing on Paris. The sheer amount of baguettes alone are enough to make Paris the superior nation. God bless baguettes. ', 30, '2016-05-06 06:38:10', 2.3522219000000177, 48.85661400000001, 2),
+(53, ' Shanghai Food For the Win', 'Shanghai, China was not the greatest. But I only went for that sweet, sweet authentic Chinese food baby. That was some good stuff!! But the other aspects of Shanghai really killed it for me. It really is overcrowded and it has a lot of smog. I guess the culture of over population leads to the lack of order. Every where is just one large mob. But the food experience was worth it!', 7, '2016-05-06 06:38:12', 121.473701, 31.230416, 2),
+(54, 'Lousy London', 'I love me some tea, so I went to London to try their classic earl grey tea. The tea itself was superb. London was a bit lack luster. Most of the time it was dark and rainy. Everywhere you went it was just a bunch of Brits enjoying a nice queue. I do not enjoy queues. Unfortunate. But at least I got to drink a ton of freaking tea! Woohoo!', 1, '2016-05-06 06:46:01', -0.12775829999998223, 51.5073509, 2),
+(55, 'Down Under in Austrailia', 'Wowzers Australia is such a wild place! As soon as I got there I was attacked by at least 5 deadly animals and insects, what a blast! I got to go head-to-head with a kangaroo in an epic 12 round boxing match! I got my ass beat but it was #worth! I also got super scared by the impossible to flush spider, oh boy! Australia really is a scary place, I love it!', 9, '2016-05-06 06:45:44', 151.20697759999996, -33.8674769, 0);
 
 -- --------------------------------------------------------
 
@@ -181,7 +240,16 @@ CREATE TABLE `post_likers` (
 
 INSERT INTO `post_likers` (`post_id`, `user_id`) VALUES
 (46, 1),
-(43, 1);
+(43, 1),
+(53, 1),
+(51, 1),
+(50, 1),
+(51, 6),
+(53, 6),
+(54, 6),
+(49, 6),
+(49, 9),
+(54, 9);
 
 -- --------------------------------------------------------
 
@@ -202,16 +270,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `user_name`, `pw`, `email`, `usergroup`) VALUES
-(1, 'myname', 'mypass', 'myemail', 1),
+(1, 'myname', 'mypass', 'myemail@vt.edu', 1),
 (6, 'user1', 'hihi', 'some@email.com', 1),
 (7, 'user2', 'yoyo', 'email@email.com', 1),
-(8, 'ohhih', 'alskdjflskdf', 'soso@flkj', 1),
-(9, '123', '123', 'so@lkjer', 1),
-(30, 'admin', 'adminpw', 'katee93@vt.edu', 5),
-(32, 'admin3', 'admin', 'katee999@vt.edu', 5),
-(33, 'admin5', 'notadmin', 'cs3744@h.edu', 5),
-(34, 'notadmin', 'notadmin', 'k93@vt.edu', 1),
-(35, 'admin166', 'hihi', 'ad@min.com', 5);
+(9, '123', '123', 'so@yahoo.com', 1),
+(30, 'admin', 'adminpw', 'katee93@vt.edu', 5);
 
 --
 -- Indexes for dumped tables
@@ -264,7 +327,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
 --
 -- AUTO_INCREMENT for table `event_type`
 --
@@ -274,12 +337,12 @@ ALTER TABLE `event_type`
 -- AUTO_INCREMENT for table `follow`
 --
 ALTER TABLE `follow`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 --
 -- AUTO_INCREMENT for table `users`
 --

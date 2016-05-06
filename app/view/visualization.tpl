@@ -127,7 +127,7 @@
 <!-- only shows when in session. User can create a post. -->
 <?php if (isset($_SESSION['username'])) {?>
 <div id="visual_create">
-  <form class = "submitPost"  id="createFrom" method="POST" action="<?= BASE_URL ?>/vizCreate">
+  <form class = "submitPost"  id="createFrom" method="POST" action="<?= BASE_URL ?>/visualization/create">
     <!-- title -->
     Title:<br>
     <input type="text" name="title" id ="title_box"><br>
