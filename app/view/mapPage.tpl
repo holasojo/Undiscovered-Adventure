@@ -144,7 +144,7 @@ var infowindow = new google.maps.InfoWindow({
 
 }
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABQlT55ZLiU7jOIhZAAU6EFhp4v219z7s&callback=initMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={key}&callback=initMap"></script>
 
 <!-- footer -->
 
